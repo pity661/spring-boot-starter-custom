@@ -1,0 +1,16 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.wenky.starter.custom.controller.ControllerAutoConfiguration,\
+com.wenky.starter.custom.holder.SpringContextHolder,\
+com.wenky.starter.custom.bean.auto.AutoConfiguration,\
+com.wenky.starter.custom.bean.condition.ConditionConfiguration,\
+com.wenky.starter.custom.bean.condition.ConditionProperties,\
+com.wenky.starter.custom.bean.aoverride.OverrideConfiguration,\
+com.wenky.starter.custom.bean.delay.aimport.ImportConfiguration,\
+com.wenky.starter.custom.bean.delay.enable.EnableConfiguration,\
+com.wenky.starter.custom.bean.delay.DelayConfiguration,\
+com.wenky.starter.custom.frame.mail.MailConfiguration,\
+com.wenky.starter.custom.aspect.AspectAutoConfiguration,\
+com.wenky.starter.custom.config.ConfigAutoConfiguration
+
+

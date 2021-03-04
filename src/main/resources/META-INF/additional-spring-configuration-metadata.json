@@ -1,0 +1,48 @@
+{
+  "properties": [
+    {
+      "name": "health.path",
+      "description": "only cover generated properties.",
+      "type": "java.lang.String",
+      "sourceType": "com.wenky.starter.custom.controller.health.HealthController"
+    },
+    {
+      "name": "wenky.mail.enable",
+      "description": "enable to send mail.",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.wenky.starter.custom.frame.mail.MailConfiguration"
+    }
+  ],
+  "hints": [
+    {
+      "name": "wenky.auto.string",
+      "values": [
+        {
+          "value": "ONE",
+          "description": "ONE VALUE."
+        },
+        {
+          "value": "TWO",
+          "description": "TWO VALUE."
+        },
+        {
+          "value": "THREE",
+          "description": "THREE VALUE."
+        }
+      ]
+    },
+    {
+      "name": "wenky.aspect.controller",
+      "values": [
+        {
+          "value": "enable",
+          "description": "enable controllerAspect be register."
+        },
+        {
+          "value": "disable",
+          "description": "disable controllerAspect be register."
+        }
+      ]
+    }
+  ]
+}

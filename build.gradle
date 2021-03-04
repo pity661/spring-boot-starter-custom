@@ -1,0 +1,86 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+    // [1]PUBLISH_TO_LOCAL_CONFIG
+    id 'maven-publish'
+}
+
+
+// [3]打包源码
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
+// https://docs.gradle.org/current/userguide/publishing_maven.html
+// [2]PUBLISH_TO_LOCAL_CONFIG
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.wenky'
+            artifactId = 'spring-boot-starter-custom'
+            version = '1.1'
+            from components.java
+            // [3]配置导出源码
+            artifact sourceJar {
+                classifier "sources"
+            }
+        }
+    }
+}
+
+jar {
+    enabled = true
+}
+
+group = 'com.wenky'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+// [2]RUN_FORMAT
+task runFormat(type: JavaExec) {
+    def mainJavaFiles = sourceSets.main.allJava.files
+    classpath = sourceSets.main.runtimeClasspath
+    main 'com.google.googlejavaformat.java.Main'
+    args '--replace'
+    args mainJavaFiles
+    args sourceSets.test.allJava.files
+}
+
+dependencies {
+    // implementation 同模块本地依赖时依赖隔离
+    // apiElements 同模块本地依赖对外开放
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // [1]RUN_FORMAT
+    implementation 'com.google.googlejavaformat:google-java-format:1.7'
+
+    // https://mvnrepository.com/artifact/io.netty/netty-all
+    implementation 'io.netty:netty-all:5.0.0.Alpha2'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    compile 'com.google.code.gson:gson:+'
+    compile 'org.apache.commons:commons-lang3:3.5'
+    compile 'commons-beanutils:commons-beanutils:1.9.3'
+    compile 'commons-codec:commons-codec:1.10'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

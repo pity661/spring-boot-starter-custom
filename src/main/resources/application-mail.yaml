@@ -1,0 +1,14 @@
+spring:
+  mail:
+    test-connection: true
+    host: smtp.qq.com
+    port: 587
+    username: email
+    password: password
+    protocol: smtp
+    properties:
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 5000
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true

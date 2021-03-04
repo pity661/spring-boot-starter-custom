@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    include: mail,wenky
+
+# 项目引用该jar时配置文件后缀应为yml,否则该默认配置不会生效
+wenky:
+  auto:
+    string: ONE
+    auto-enum: first
+    a-boolean: false
+    a-long: 1
+    integer: 1
+  aspect:
+    controller: enable
