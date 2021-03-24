@@ -1,0 +1,4 @@
+singleServerConfig:
+  # 不能这样配置，识别不出来
+  address: redis://${spring.redis.host}:${spring.redis.port}
+  database: 1

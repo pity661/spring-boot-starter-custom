@@ -1,0 +1,16 @@
+spring:
+  redis:
+    # redisson.config中的配置权重比spring.redis.xxx高 database:1生效
+    # redisProperties 配置均无效
+    port: 6379
+    host: 127.0.0.1
+    timeout: 2000
+    database: 0
+    # config class RedissonAutoConfiguration
+    redisson:
+#      file: classpath:redisson-config.yaml
+      config: |
+        singleServerConfig:
+          address: redis://${spring.redis.host}:${spring.redis.port}
+          database: 1
+          timeout: 2000

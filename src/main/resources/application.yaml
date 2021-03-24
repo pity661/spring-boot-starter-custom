@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include: mail,wenky
+    include: mail,wenky,redis
 
 # 项目引用该jar时配置文件后缀应为yml,否则该默认配置不会生效
 wenky:
