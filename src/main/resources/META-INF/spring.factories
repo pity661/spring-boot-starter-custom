@@ -5,8 +5,8 @@ com.wenky.starter.custom.holder.SpringContextHolder,\
 com.wenky.starter.custom.bean.auto.AutoConfiguration,\
 com.wenky.starter.custom.bean.condition.ConditionConfiguration,\
 com.wenky.starter.custom.bean.condition.ConditionProperties,\
-com.wenky.starter.custom.bean.aoverride.OverrideConfiguration,\
-com.wenky.starter.custom.bean.delay.aimport.ImportConfiguration,\
+com.wenky.starter.custom.bean.Loverride.OverrideConfiguration,\
+com.wenky.starter.custom.bean.delay.Limport.ImportConfiguration,\
 com.wenky.starter.custom.bean.delay.enable.EnableConfiguration,\
 com.wenky.starter.custom.bean.delay.DelayConfiguration,\
 com.wenky.starter.custom.frame.mail.MailConfiguration,\

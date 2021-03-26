@@ -1,4 +1,4 @@
-package com.wenky.starter.custom.bean.aoverride;
+package com.wenky.starter.custom.bean.Loverride;
 
 import com.wenky.starter.custom.util.LoggerUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

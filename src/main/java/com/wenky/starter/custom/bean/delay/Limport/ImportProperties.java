@@ -1,4 +1,4 @@
-package com.wenky.starter.custom.bean.delay.aimport;
+package com.wenky.starter.custom.bean.delay.Limport;
 
 import com.wenky.starter.custom.util.LoggerUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;

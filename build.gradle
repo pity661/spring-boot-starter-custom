@@ -67,7 +67,9 @@ dependencies {
 
     // redisson 引入redisson-starter依赖后，不需要再引入starter-data-redis依赖
 //    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-    implementation 'org.redisson:redisson-spring-boot-starter:3.13.6'
+//    implementation 'org.redisson:redisson-spring-boot-starter:3.13.6'
+    implementation 'org.redisson:redisson:3.14.0'
+
 
     // [1]RUN_FORMAT
     implementation 'com.google.googlejavaformat:google-java-format:1.7'
@@ -80,6 +82,11 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.5'
     compile 'commons-beanutils:commons-beanutils:1.9.3'
     compile 'commons-codec:commons-codec:1.10'
+
+    // zookeeper
+    implementation 'org.apache.zookeeper:zookeeper:3.4.14'
+    // html analysis
+    implementation 'org.jsoup:jsoup:1.13.1'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

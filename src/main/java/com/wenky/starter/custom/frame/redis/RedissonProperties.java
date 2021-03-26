@@ -14,6 +14,9 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @ConfigurationProperties(prefix = "wenky.redisson")
 public class RedissonProperties {
+  //  public RedissonProperties() {
+  //    LoggerUtils.construct();
+  //  }
   /** trylock wait time, overtime failed. default 1 s * */
   private Integer waitTime = 1;
   /** lock keep time, overtime auto release lock. default 5 min * */

@@ -1,6 +1,6 @@
 package com.wenky.starter.custom.bean.delay;
 
-import com.wenky.starter.custom.bean.delay.aimport.ImportProperties;
+import com.wenky.starter.custom.bean.delay.Limport.ImportProperties;
 import com.wenky.starter.custom.bean.delay.enable.EnableProperties;
 import com.wenky.starter.custom.util.LoggerUtils;
 import org.springframework.context.annotation.Import;

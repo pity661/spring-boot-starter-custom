@@ -6,7 +6,7 @@ import java.util.function.Function;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 
 /**
  * @program: spring-boot-starter-custom
@@ -15,8 +15,12 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * @email: huwenqi@panda-fintech.com
  * @create: 2021-03-19 11:58
  */
+@AutoConfigureAfter(RedissonAutoConfig.class)
 public class RedissonLock {
-  @Autowired private StringRedisTemplate stringRedisTemplate;
+  //  public RedissonLock() {
+  //    LoggerUtils.construct();
+  //  }
+
   @Autowired private RedissonClient redissonClient;
   @Autowired private RedissonProperties redissonProperties;
 
