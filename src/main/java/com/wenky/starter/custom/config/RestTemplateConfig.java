@@ -1,7 +1,6 @@
 package com.wenky.starter.custom.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
@@ -13,7 +12,6 @@ import org.springframework.web.client.RestTemplate;
  * @email: huwenqi@panda-fintech.com
  * @create: 2021-03-25 10:36
  */
-@Configuration
 public class RestTemplateConfig {
   @Bean
   public RestTemplate restTemplate() {

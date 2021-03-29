@@ -2,6 +2,7 @@ package com.wenky.starter.custom.frame.redis;
 
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Import;
  * @email: huwenqi@panda-fintech.com
  * @create: 2021-03-19 14:08
  */
+@ConditionalOnProperty(value = "wenky.redisson.enable", havingValue = "true")
 // 在RedisAutoConfiguration注入后，且bean RedisProperties存在
 @ConditionalOnBean(RedisProperties.class)
 // 无视condition

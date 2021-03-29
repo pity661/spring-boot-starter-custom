@@ -24,6 +24,8 @@ public class RedissonProperties {
   /** acquire sleep time. default 100 ms * */
   @Range(min = 100, max = 500, message = "sleep time must in [100, 500]")
   private Integer sleepTime = 100;
+  /** enable use redis * */
+  private Boolean enable;
 
   public Integer getWaitTime() {
     return waitTime;
@@ -47,5 +49,13 @@ public class RedissonProperties {
 
   public void setSleepTime(Integer sleepTime) {
     this.sleepTime = sleepTime;
+  }
+
+  public Boolean getEnable() {
+    return enable;
+  }
+
+  public void setEnable(Boolean enable) {
+    this.enable = enable;
   }
 }
