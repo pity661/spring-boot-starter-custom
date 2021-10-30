@@ -1,8 +1,8 @@
 package com.wenky.starter.custom.aspect;
 
-import com.wenky.starter.custom.aspect.example.bean.Boy;
-import com.wenky.starter.custom.aspect.example.bean.Human;
-import com.wenky.starter.custom.aspect.example.bean.Man;
+import com.wenky.starter.custom.aspect.example.common.bean.Boy;
+import com.wenky.starter.custom.aspect.example.common.bean.Human;
+import com.wenky.starter.custom.aspect.example.common.bean.Man;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

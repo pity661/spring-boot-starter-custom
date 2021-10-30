@@ -1,4 +1,4 @@
-package com.wenky.starter.custom.aspect.example.annotation;
+package com.wenky.starter.custom.aspect.example.common.annotation;
 
 import java.lang.annotation.*;
 
@@ -12,4 +12,4 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Documented
-public @interface A1 {}
+public @interface A2 {}

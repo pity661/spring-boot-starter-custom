@@ -2,6 +2,8 @@ package com.wenky.starter.custom.util.date;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import org.apache.commons.lang3.time.DateUtils;
@@ -37,19 +39,32 @@ public class CalculateDateUtils {
     return DateTransformUtils.localDateTime2DateTime(localDateTime);
   }
 
-  // 计算时间差
+  // 计算时间差 localDate
+  public static Integer getDaysInterval(LocalDate start, LocalDate end) {
+    return Period.between(start, end).getDays();
+  }
+
+  // 计算时间差 localTime
+  public static Integer getDaysInterval(LocalTime start, LocalTime end) {
+    return Math.toIntExact(ChronoUnit.DAYS.between(start, end));
+  }
+
+  // 计算时间差 date
   public static Integer getDaysInterval(Date start, Date end) {
     return Math.toIntExact(ChronoUnit.DAYS.between(start.toInstant(), end.toInstant()));
   }
 
+  // 计算小时
   public static Integer getHoursInterval(Date start, Date end) {
     return Math.toIntExact(ChronoUnit.HOURS.between(start.toInstant(), end.toInstant()));
   }
 
+  // 计算分钟
   public static Integer getMinutesInterval(Date start, Date end) {
     return Math.toIntExact(ChronoUnit.MINUTES.between(start.toInstant(), end.toInstant()));
   }
 
+  // 计算秒
   public static Integer getSecondsInterval(Date start, Date end) {
     return Math.toIntExact(ChronoUnit.SECONDS.between(start.toInstant(), end.toInstant()));
   }

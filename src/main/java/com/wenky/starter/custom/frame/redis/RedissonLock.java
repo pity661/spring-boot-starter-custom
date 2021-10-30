@@ -78,8 +78,12 @@ public class RedissonLock {
       LoggerUtils.exception(e);
     } finally {
       // 如果执行超时释放锁失败
-      if (acquireLock && rLock.isLocked()) {
-        rLock.unlock();
+      try {
+        if (acquireLock && rLock.isHeldByCurrentThread()) {
+          rLock.unlock();
+        }
+      } catch (Exception e) {
+        LoggerUtils.exception(e);
       }
     }
     return result;

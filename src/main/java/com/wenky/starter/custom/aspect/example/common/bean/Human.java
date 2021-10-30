@@ -1,6 +1,6 @@
-package com.wenky.starter.custom.aspect.example.bean;
+package com.wenky.starter.custom.aspect.example.common.bean;
 
-import com.wenky.starter.custom.aspect.example.annotation.A1;
+import com.wenky.starter.custom.aspect.example.common.annotation.A1;
 
 /**
  * @program: spring-boot-starter-custom

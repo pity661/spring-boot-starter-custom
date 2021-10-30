@@ -12,6 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @email: huwenqi@panda-fintech.com
  * @create: 2020-12-04 22:18
  */
+// 需要在spring.factories中定义，或通过@EnableConfigurationProperties注入
 @ConditionalOnProperty(
     prefix = "wenky.enable",
     value = "enable",

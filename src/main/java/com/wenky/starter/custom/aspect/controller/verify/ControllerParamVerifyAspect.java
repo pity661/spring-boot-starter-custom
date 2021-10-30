@@ -1,7 +1,6 @@
 package com.wenky.starter.custom.aspect.controller.verify;
 
 import com.wenky.starter.custom.aspect.controller.ControllerAspect;
-import com.wenky.starter.custom.controller.support.VerifyException;
 import java.lang.reflect.Parameter;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -44,9 +43,13 @@ public class ControllerParamVerifyAspect {
       return joinPoint.proceed();
     }
     // 参数检验处理
-    if (((VerifyInterface) (joinPoint.getArgs()[0])).verify()) {
-      return joinPoint.proceed();
-    }
-    throw new VerifyException("param verify fail!");
+    //    if (((VerifyInterface) (joinPoint.getArgs()[0])).verify()) {
+    //      return joinPoint.proceed();
+    //    }
+    //    throw new VerifyException("param verify fail!");
+
+    // 参数校验处理(子类自定义异常信息)
+    ((VerifyInterface) (joinPoint.getArgs()[0])).verify();
+    return joinPoint.proceed();
   }
 }

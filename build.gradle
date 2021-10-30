@@ -6,19 +6,20 @@ plugins {
     id 'maven-publish'
 }
 
-
 // [3]打包源码
 task sourceJar(type: Jar) {
     from sourceSets.main.allJava
 }
 // https://docs.gradle.org/current/userguide/publishing_maven.html
 // [2]PUBLISH_TO_LOCAL_CONFIG
+// Tasks::publishing::publishMavenPublicationToMavenLocal
+// pwd => /Users/huwenqi/.m2/repository/com/wenky/spring-boot-starter-custom
 publishing {
     publications {
         maven(MavenPublication) {
             groupId = 'com.wenky'
             artifactId = 'spring-boot-starter-custom'
-            version = '1.1'
+            version = '1.2'
             from components.java
             // [3]配置导出源码
             artifact sourceJar {
@@ -83,9 +84,13 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.5'
     compile 'commons-beanutils:commons-beanutils:1.9.3'
     compile 'commons-codec:commons-codec:1.10'
+    compile 'commons-fileupload:commons-fileupload:1.4'
 
     // zookeeper
-    implementation 'org.apache.zookeeper:zookeeper:3.4.14'
+    implementation ('org.apache.zookeeper:zookeeper:3.4.14') {
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        exclude group: 'log4j', module: 'log4j'
+    }
     // html analysis
     implementation 'org.jsoup:jsoup:1.13.1'
 

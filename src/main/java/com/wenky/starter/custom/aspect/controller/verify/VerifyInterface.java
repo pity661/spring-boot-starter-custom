@@ -1,5 +1,7 @@
 package com.wenky.starter.custom.aspect.controller.verify;
 
+import com.wenky.starter.custom.controller.support.VerifyException;
+
 /**
  * @program: spring-boot-starter-custom
  * @description:
@@ -10,5 +12,5 @@ package com.wenky.starter.custom.aspect.controller.verify;
 public interface VerifyInterface {
   // 参数校验需要实现该方法
   // 在controller使用该类子类，方法会自动参与参数校验逻辑
-  boolean verify();
+  void verify() throws VerifyException;
 }

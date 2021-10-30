@@ -1,4 +1,4 @@
-package com.wenky.starter.custom.aspect.example.bean;
+package com.wenky.starter.custom.aspect.example.common.bean;
 
 /**
  * @program: spring-boot-starter-custom

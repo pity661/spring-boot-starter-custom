@@ -3,6 +3,10 @@ spring:
     name: spring-boot-starter-custom
   profiles:
     include: mail,wenky #,redis
+  # true: 默认cglib
+  # false: 指定jdk代理
+  aop:
+    proxy-target-class: true
 
 # 项目引用该jar时配置文件后缀应为yml,否则该默认配置不会生效
 wenky:
