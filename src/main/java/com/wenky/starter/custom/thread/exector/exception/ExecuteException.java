@@ -38,6 +38,7 @@ public class ExecuteException {
             () -> {
               for (; ; ) {
                 System.out.println(Thread.currentThread().getName() + "submit开始执行异常");
+                // 需要执行 future.get()获取异常信息
                 throw new NullPointerException();
               }
             });
@@ -45,6 +46,7 @@ public class ExecuteException {
         () -> {
           for (; ; ) {
             System.out.println(Thread.currentThread().getName() + "execute开始执行异常");
+            // 直接抛出异常信息
             throw new NullPointerException();
           }
         });

@@ -1,6 +1,8 @@
 package com.wenky.starter.custom.util;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,11 +59,28 @@ public class LoggerUtils {
   }
 
   public static String getBizAction() {
+    return getBizAction(1);
+  }
+
+  public static String getBizAction(Integer skip) {
     return Stream.of(Thread.currentThread().getStackTrace())
-        .skip(1)
+        .skip(2 + skip)
         .filter(single -> !TARGET_CLASS_NAME.equals(single.getClassName()))
         .findFirst()
         .map(element -> element.getClassName() + " - " + element.getMethodName())
         .get();
+  }
+
+  public static String logMessage(Object... objects) {
+    AtomicReference<Integer> index = new AtomicReference<>(0);
+    return String.format(
+        Stream.concat(
+                Stream.of(getBizAction(1)),
+                Stream.generate(() -> index.updateAndGet(value -> ++value) + "、[%s]")
+                    .limit(objects.length))
+            .collect(Collectors.joining(" ")),
+        Stream.of(objects)
+            .map(value -> value instanceof String ? value : GsonUtils.toString(value))
+            .toArray());
   }
 }

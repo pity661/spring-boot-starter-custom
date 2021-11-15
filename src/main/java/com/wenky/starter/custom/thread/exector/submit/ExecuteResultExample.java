@@ -34,8 +34,8 @@ public class ExecuteResultExample {
           return "success";
         };
     Future<String> future2 = executor.submit(callable);
-    // 阻塞主线程直到任务完成
     try {
+      // 阻塞主线程直到任务完成
       System.out.println(future2.get());
     } catch (ExecutionException e) {
       Throwable origin = e.getCause();

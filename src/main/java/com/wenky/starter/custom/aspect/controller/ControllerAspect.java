@@ -68,6 +68,9 @@ public class ControllerAspect {
     Parameter[] parameters =
         ((MethodSignature) joinPoint.getSignature()).getMethod().getParameters();
     Object[] params = joinPoint.getArgs();
+    if (params.length == 0) {
+      return null;
+    }
     // 没有请求参数的情况 通常默认参数只会有一个
     return params[0] instanceof javax.servlet.http.HttpServletRequest
         ? null

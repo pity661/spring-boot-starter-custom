@@ -7,6 +7,10 @@ spring:
   # false: 指定jdk代理
   aop:
     proxy-target-class: true
+# post => 请求参数和响应结果 @RequestBody
+# get => 响应结果
+#  jackson:
+#    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
 
 # 项目引用该jar时配置文件后缀应为yml,否则该默认配置不会生效
 wenky:
