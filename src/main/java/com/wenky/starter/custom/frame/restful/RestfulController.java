@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @program: spring-boot-starter-custom
@@ -26,13 +26,8 @@ public class RestfulController {
     return ResponseEntity.ok("message");
   }
 
-  @RequestMapping("/201")
-  public ResponseEntity<String> CREATED() {
-    return new ResponseEntity("message", HttpStatus.CREATED);
-  }
-
   @RequestMapping("/302")
-  public void FOUND() throws IOException {
+  public void FOUND(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // http://127.0.0.1:8080
     String basePath =
         request.getScheme()
@@ -44,28 +39,18 @@ public class RestfulController {
     response.sendRedirect(basePath + "/200");
   }
 
-  @RequestMapping("/400")
-  public ResponseEntity<String> BAD_REQUEST() {
-    return new ResponseEntity("message", HttpStatus.BAD_REQUEST);
+  @RequestMapping("/{value}")
+  public ResponseEntity<String> CREATED(@PathVariable Integer value) {
+    return new ResponseEntity("message", HttpStatus.valueOf(value));
   }
 
-  @RequestMapping("/401")
-  public ResponseEntity<String> UNAUTHORIZED() {
-    return new ResponseEntity("message", HttpStatus.UNAUTHORIZED);
+  @PostMapping("/post")
+  public ResponseEntity post(@RequestBody PostParam param) {
+    return ResponseEntity.ok(param);
   }
 
-  @RequestMapping("/402")
-  public ResponseEntity<String> PAYMENT_REQUIRED() {
-    return new ResponseEntity("message", HttpStatus.PAYMENT_REQUIRED);
-  }
-
-  @RequestMapping("/404")
-  public ResponseEntity<String> NOT_FOUND() {
-    return new ResponseEntity("message", HttpStatus.NOT_FOUND);
-  }
-
-  @RequestMapping("/500")
-  public ResponseEntity<String> INTERNAL_SERVER_ERROR() {
-    return new ResponseEntity("message", HttpStatus.INTERNAL_SERVER_ERROR);
+  @GetMapping("/get")
+  public ResponseEntity get(GetParam param) {
+    return ResponseEntity.ok(param);
   }
 }
