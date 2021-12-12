@@ -58,11 +58,18 @@ public class LoggerUtils {
     return className;
   }
 
+  //  public static Class getCallerClass() {
+  //    // 警告: Reflection是内部专用 API, 可能会在未来发行版中删除
+  //    Class var0 = Reflection.getCallerClass();
+  //    return var0;
+  //  }
+
   public static String getBizAction() {
     return getBizAction(1);
   }
 
   public static String getBizAction(Integer skip) {
+    //    new Throwable().getStackTrace();
     return Stream.of(Thread.currentThread().getStackTrace())
         .skip(2 + skip)
         .filter(single -> !TARGET_CLASS_NAME.equals(single.getClassName()))

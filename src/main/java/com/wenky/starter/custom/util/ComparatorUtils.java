@@ -13,9 +13,21 @@ import java.util.stream.Collectors;
 public class ComparatorUtils {
 
   public static void main(String[] args) {
-    thenComparing();
+    //    thenComparing();
 
     // mapSort();
+
+    sort();
+  }
+
+  public static void sort() {
+    List<String> list = Arrays.asList(null, "1234", "1243", "12345");
+    Comparator<String> comparator =
+        Comparator.nullsLast(Comparator.comparing(String::length, Comparator.reverseOrder()));
+    comparator = comparator.thenComparing(Integer::valueOf, Comparator.reverseOrder());
+    list.sort(comparator);
+    // [12345, 1243, 1234, null]
+    System.out.println(list);
   }
 
   public static void mapSort() {

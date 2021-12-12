@@ -14,7 +14,7 @@ public class GetParam {
 
   public static GetParam newInstance() {
     GetParam param = new GetParam();
-    param.setName("wenky");
+    param.setName("wenky+");
     param.setPhone("10086");
     return param;
   }
