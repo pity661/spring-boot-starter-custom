@@ -3,6 +3,7 @@ package com.wenky.starter.custom.thread.basic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: spring-boot-starter-custom
@@ -17,15 +18,15 @@ public class SynchronizedExample {
     }
 
     private static void synchronizedTest() throws InterruptedException {
-        CountDownLatch countDownLatch = new CountDownLatch(3);
+        CountDownLatch countDownLatch = new CountDownLatch(4);
         MyStack myStack = new MyStack();
         Thread thread1 =
                 new Thread(
                         () -> {
                             try {
-                                System.out.println("thread1 start");
-                                myStack.pop();
-                                System.out.println("thread1 end");
+                                System.out.println(Thread.currentThread().getName() + "start");
+                                System.out.println(myStack.pop());
+                                System.out.println(Thread.currentThread().getName() + "end");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -36,9 +37,9 @@ public class SynchronizedExample {
                 new Thread(
                         () -> {
                             try {
-                                System.out.println("thread2 start");
-                                myStack.pop();
-                                System.out.println("thread2 end");
+                                System.out.println(Thread.currentThread().getName() + "start");
+                                System.out.println(myStack.pop());
+                                System.out.println(Thread.currentThread().getName() + "end");
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -49,12 +50,23 @@ public class SynchronizedExample {
         Thread thread3 =
                 new Thread(
                         () -> {
-                            System.out.println("thread3 start");
+                            System.out.println(Thread.currentThread().getName() + "end");
                             myStack.push("a");
-                            System.out.println("thread3 end");
+                            System.out.println(Thread.currentThread().getName() + "end");
                             countDownLatch.countDown();
                         });
         thread3.start();
+
+        TimeUnit.SECONDS.sleep(4);
+        Thread thread4 =
+                new Thread(
+                        () -> {
+                            System.out.println(Thread.currentThread().getName() + "end");
+                            myStack.push("b");
+                            System.out.println(Thread.currentThread().getName() + "end");
+                            countDownLatch.countDown();
+                        });
+        thread4.start();
         countDownLatch.await();
     }
 
@@ -64,21 +76,23 @@ public class SynchronizedExample {
         public synchronized void push(String value) {
             synchronized (this) {
                 list.add(value);
-                // notify();
+                 notify();
                 // [1] 如果这里用notifyAll，下面就不需要加
-                notifyAll();
+//                notifyAll();
             }
         }
 
         public synchronized String pop() throws InterruptedException {
             synchronized (this) {
-                if (list.size() <= 0) {
+                System.out.println(Thread.currentThread().getName() + "size: " + list.size());
+                // 这里需要重复判断list的size
+                while (list.size() <= 0) {
                     // wait方法会释放锁 且仅当获取锁后才能调用
                     wait();
                 }
                 String result = list.remove(list.size() - 1);
                 // [2] 如果push用notify，这里就要加notify
-                // notify();
+                 notify();
                 return result;
             }
         }
