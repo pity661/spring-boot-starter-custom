@@ -9,9 +9,9 @@ package com.wenky.starter.custom.collection.deque;
  */
 public class DequeExample {
 
-  public static void main(String[] args) {
-    dequeTest();
-  }
+    public static void main(String[] args) {
+        dequeTest();
+    }
 
-  private static void dequeTest() {}
+    private static void dequeTest() {}
 }

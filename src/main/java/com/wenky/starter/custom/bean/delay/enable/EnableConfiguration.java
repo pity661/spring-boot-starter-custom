@@ -20,7 +20,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 @ConditionalOnBean(EnableProperties.class) // [2]
 @AutoConfigureAfter(DelayConfiguration.class) // [2]
 public class EnableConfiguration {
-  EnableConfiguration() {
-    LoggerUtils.construct();
-  }
+    EnableConfiguration() {
+        LoggerUtils.construct();
+    }
 }

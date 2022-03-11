@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Import;
 // [2]@Import方式，目标类中的ConditionalOnExpression生效
 @Import({ImportProperties.class, EnableProperties.class}) // [2]
 public class DelayConfiguration {
-  DelayConfiguration() {
-    LoggerUtils.construct();
-  }
+    DelayConfiguration() {
+        LoggerUtils.construct();
+    }
 }

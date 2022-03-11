@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
  */
 @ConditionalOnMissingBean(OverrideConfiguration.class)
 public class OverrideConfiguration {
-  public OverrideConfiguration() {
-    LoggerUtils.construct();
-  }
+    public OverrideConfiguration() {
+        LoggerUtils.construct();
+    }
 }

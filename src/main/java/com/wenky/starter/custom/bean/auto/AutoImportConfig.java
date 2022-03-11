@@ -13,7 +13,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
  */
 @AutoConfigureAfter(SpringContextHolder.class)
 public class AutoImportConfig {
-  AutoImportConfig() {
-    LoggerUtils.construct();
-  }
+    AutoImportConfig() {
+        LoggerUtils.construct();
+    }
 }

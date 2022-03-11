@@ -14,18 +14,18 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AnnotationBean {
-  public void handle() {
-    System.out.println("handle");
-  }
+    public void handle() {
+        System.out.println("handle");
+    }
 
-  @Target
-  public void annotationHandle() {
-    System.out.println("annotationHandle");
-  }
+    @Target
+    public void annotationHandle() {
+        System.out.println("annotationHandle");
+    }
 
-  @TargetA
-  @TargetB
-  public void doubleAnnotationHandle() {
-    System.out.println("doubleAnnotationHandle");
-  }
+    @TargetA
+    @TargetB
+    public void doubleAnnotationHandle() {
+        System.out.println("doubleAnnotationHandle");
+    }
 }

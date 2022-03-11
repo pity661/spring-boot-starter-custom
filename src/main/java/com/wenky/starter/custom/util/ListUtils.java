@@ -11,15 +11,15 @@ import java.util.List;
  * @create: 2021-01-15 11:46
  */
 public class ListUtils {
-  /**
-   * 按照指定大小分割数组
-   *
-   * @param list
-   * @param size
-   * @param <T>
-   * @return
-   */
-  public <T> List<List<T>> partition(List<T> list, Integer size) {
-    return Lists.partition(list, size);
-  }
+    /**
+     * 按照指定大小分割数组
+     *
+     * @param list
+     * @param size
+     * @param <T>
+     * @return
+     */
+    public <T> List<List<T>> partition(List<T> list, Integer size) {
+        return Lists.partition(list, size);
+    }
 }

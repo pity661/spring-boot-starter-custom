@@ -8,5 +8,5 @@ package com.wenky.starter.custom.aspect.example.common.service;
  * @create: 2021-07-08 15:27
  */
 public interface CommonService {
-  public void handle();
+    public void handle();
 }

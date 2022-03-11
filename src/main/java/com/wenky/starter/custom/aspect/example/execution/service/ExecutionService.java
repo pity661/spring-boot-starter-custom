@@ -8,5 +8,5 @@ package com.wenky.starter.custom.aspect.example.execution.service;
  * @create: 2021-07-07 13:57
  */
 public interface ExecutionService {
-  public void handle();
+    public void handle();
 }

@@ -23,47 +23,47 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  */
 public class UnderlineToCamelArgumentResolver implements HandlerMethodArgumentResolver {
 
-  private static Pattern pattern = Pattern.compile("_(\\w)");
+    private static Pattern pattern = Pattern.compile("_(\\w)");
 
-  @Override
-  public boolean supportsParameter(MethodParameter parameter) {
-    return parameter.hasParameterAnnotation(LineToCamel.class);
-  }
-
-  @Override
-  public Object resolveArgument(
-      MethodParameter parameter,
-      ModelAndViewContainer mavContainer,
-      NativeWebRequest webRequest,
-      WebDataBinderFactory binderFactory)
-      throws Exception {
-    return handleParameterNames(parameter, webRequest);
-  }
-
-  private Object handleParameterNames(MethodParameter parameter, NativeWebRequest webRequest)
-      throws IllegalAccessException, InstantiationException {
-    Object obj = parameter.getParameterType().newInstance();
-    BeanWrapper wrapper = PropertyAccessorFactory.forBeanPropertyAccess(obj);
-    Iterator<String> paramNames = webRequest.getParameterNames();
-    while (paramNames.hasNext()) {
-      String paramName = paramNames.next();
-      Object o = webRequest.getParameter(paramName);
-      try {
-        wrapper.setPropertyValue(underLineToCamel(paramName), o);
-      } catch (BeansException e) {
-        LoggerUtils.exception(e);
-      }
+    @Override
+    public boolean supportsParameter(MethodParameter parameter) {
+        return parameter.hasParameterAnnotation(LineToCamel.class);
     }
-    return obj;
-  }
 
-  private static String underLineToCamel(String source) {
-    Matcher matcher = pattern.matcher(source);
-    StringBuffer sb = new StringBuffer();
-    while (matcher.find()) {
-      matcher.appendReplacement(sb, matcher.group(1).toUpperCase());
+    @Override
+    public Object resolveArgument(
+            MethodParameter parameter,
+            ModelAndViewContainer mavContainer,
+            NativeWebRequest webRequest,
+            WebDataBinderFactory binderFactory)
+            throws Exception {
+        return handleParameterNames(parameter, webRequest);
     }
-    matcher.appendTail(sb);
-    return sb.toString();
-  }
+
+    private Object handleParameterNames(MethodParameter parameter, NativeWebRequest webRequest)
+            throws IllegalAccessException, InstantiationException {
+        Object obj = parameter.getParameterType().newInstance();
+        BeanWrapper wrapper = PropertyAccessorFactory.forBeanPropertyAccess(obj);
+        Iterator<String> paramNames = webRequest.getParameterNames();
+        while (paramNames.hasNext()) {
+            String paramName = paramNames.next();
+            Object o = webRequest.getParameter(paramName);
+            try {
+                wrapper.setPropertyValue(underLineToCamel(paramName), o);
+            } catch (BeansException e) {
+                LoggerUtils.exception(e);
+            }
+        }
+        return obj;
+    }
+
+    private static String underLineToCamel(String source) {
+        Matcher matcher = pattern.matcher(source);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(sb, matcher.group(1).toUpperCase());
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
+    }
 }

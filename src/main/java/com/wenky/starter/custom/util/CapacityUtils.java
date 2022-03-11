@@ -11,19 +11,19 @@ import org.apache.commons.lang3.StringUtils;
  * @create: 2020-12-22 09:31
  */
 public class CapacityUtils {
-  public static String null2Empty(String s) {
-    return s == null ? "" : s;
-  }
-
-  //
-  public static BigDecimal getNotNullBigDecimal(String number) {
-    if (StringUtils.isNumeric(number)) {
-      return new BigDecimal(number);
+    public static String null2Empty(String s) {
+        return s == null ? "" : s;
     }
-    return getInitBigDecimal();
-  }
 
-  private static BigDecimal getInitBigDecimal() {
-    return new BigDecimal("0.00");
-  }
+    //
+    public static BigDecimal getNotNullBigDecimal(String number) {
+        if (StringUtils.isNumeric(number)) {
+            return new BigDecimal(number);
+        }
+        return getInitBigDecimal();
+    }
+
+    private static BigDecimal getInitBigDecimal() {
+        return new BigDecimal("0.00");
+    }
 }

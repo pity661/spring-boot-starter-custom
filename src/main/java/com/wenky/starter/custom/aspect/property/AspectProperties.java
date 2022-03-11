@@ -11,14 +11,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "wenky.aspect")
 public class AspectProperties {
-  /** enable (controllerAspect switch) */
-  private String controller;
+    /** enable (controllerAspect switch) */
+    private String controller;
 
-  public String getController() {
-    return controller;
-  }
+    public String getController() {
+        return controller;
+    }
 
-  public void setController(String controller) {
-    this.controller = controller;
-  }
+    public void setController(String controller) {
+        this.controller = controller;
+    }
 }

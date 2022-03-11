@@ -15,26 +15,26 @@ import java.util.Locale;
  * @create: 2021-07-02 15:42
  */
 public class LocalDateExample {
-  public static void main(String[] args) {
-    //        localDateTest();
-    localDateFormatTest();
-  }
+    public static void main(String[] args) {
+        //        localDateTest();
+        localDateFormatTest();
+    }
 
-  private static void localDateFormatTest() {
-    DateTimeFormatter germanFormatter =
-        DateTimeFormatter.ofPattern("dd.MM.yyyy").withLocale(Locale.CHINA);
+    private static void localDateFormatTest() {
+        DateTimeFormatter germanFormatter =
+                DateTimeFormatter.ofPattern("dd.MM.yyyy").withLocale(Locale.CHINA);
 
-    LocalDate xmas = LocalDate.parse("24.12.2014", germanFormatter);
-    System.out.println(xmas); // 2014-12-24
-  }
+        LocalDate xmas = LocalDate.parse("24.12.2014", germanFormatter);
+        System.out.println(xmas); // 2014-12-24
+    }
 
-  private static void localDateTest() {
-    LocalDate today = LocalDate.now();
-    LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);
-    LocalDate yesterday = tomorrow.minusDays(2);
+    private static void localDateTest() {
+        LocalDate today = LocalDate.now();
+        LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);
+        LocalDate yesterday = tomorrow.minusDays(2);
 
-    LocalDate independenceDay = LocalDate.of(2014, Month.JULY, 4);
-    DayOfWeek dayOfWeek = independenceDay.getDayOfWeek();
-    System.out.println(dayOfWeek); // FRIDAY
-  }
+        LocalDate independenceDay = LocalDate.of(2014, Month.JULY, 4);
+        DayOfWeek dayOfWeek = independenceDay.getDayOfWeek();
+        System.out.println(dayOfWeek); // FRIDAY
+    }
 }

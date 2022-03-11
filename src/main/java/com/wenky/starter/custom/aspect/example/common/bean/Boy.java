@@ -8,8 +8,8 @@ package com.wenky.starter.custom.aspect.example.common.bean;
  * @create: 2021-03-02 11:40
  */
 public class Boy extends Man {
-  @Override
-  public void jump() {
-    System.out.println("Boy jump.");
-  }
+    @Override
+    public void jump() {
+        System.out.println("Boy jump.");
+    }
 }

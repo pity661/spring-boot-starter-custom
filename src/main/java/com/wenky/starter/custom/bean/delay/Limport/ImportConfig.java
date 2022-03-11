@@ -10,7 +10,7 @@ import com.wenky.starter.custom.util.LoggerUtils;
  * @create: 2020-12-04 22:36
  */
 public class ImportConfig {
-  ImportConfig() {
-    LoggerUtils.construct();
-  }
+    ImportConfig() {
+        LoggerUtils.construct();
+    }
 }

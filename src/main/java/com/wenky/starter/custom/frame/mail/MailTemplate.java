@@ -14,28 +14,28 @@ import org.springframework.mail.javamail.JavaMailSender;
  * @create: 2020-12-07 10:12
  */
 public class MailTemplate {
-  @Autowired private MailProperties mailProperties;
-  private JavaMailSender javaMailSender;
+    @Autowired private MailProperties mailProperties;
+    private JavaMailSender javaMailSender;
 
-  public MailTemplate(JavaMailSender javaMailSender) {
-    this.javaMailSender = javaMailSender;
-    LoggerUtils.construct();
-    LoggerUtils.info("JavaMailSender:" + this.javaMailSender);
-  }
+    public MailTemplate(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+        LoggerUtils.construct();
+        LoggerUtils.info("JavaMailSender:" + this.javaMailSender);
+    }
 
-  public void sendEmailTemplate() {
-    SimpleMailMessage message = initMessage();
-    message.setText("This is the test email template for your email:\n%s\n");
-    javaMailSender.send(message);
-    LoggerUtils.info("TEST EMAIl SEND SUCCESS！");
-  }
+    public void sendEmailTemplate() {
+        SimpleMailMessage message = initMessage();
+        message.setText("This is the test email template for your email:\n%s\n");
+        javaMailSender.send(message);
+        LoggerUtils.info("TEST EMAIl SEND SUCCESS！");
+    }
 
-  private SimpleMailMessage initMessage() {
-    SimpleMailMessage message = new SimpleMailMessage();
-    message.setFrom(mailProperties.getUsername());
-    message.setTo("huwenqi@panda-fintech.com");
-    //        message.setTo("wenky0413@gmail.com");
-    message.setSubject("TEST");
-    return message;
-  }
+    private SimpleMailMessage initMessage() {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(mailProperties.getUsername());
+        message.setTo("huwenqi@panda-fintech.com");
+        //        message.setTo("wenky0413@gmail.com");
+        message.setSubject("TEST");
+        return message;
+    }
 }

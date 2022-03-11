@@ -15,21 +15,21 @@ import org.springframework.stereotype.Service;
 @Primary
 @Service
 public class ExecutionServiceImpl implements ExecutionService {
-  @Override
-  public void handle() {
-    System.out.println("handle");
-  }
+    @Override
+    public void handle() {
+        System.out.println("handle");
+    }
 
-  public void handlePlus() {
-    System.out.println("handlePlus");
-  }
+    public void handlePlus() {
+        System.out.println("handlePlus");
+    }
 
-  public void handleThrows() throws IndexOutOfBoundsException {
-    System.out.println("handleThrows");
-  }
+    public void handleThrows() throws IndexOutOfBoundsException {
+        System.out.println("handleThrows");
+    }
 
-  @Target
-  public void handleAnnotation() {
-    System.out.println("handleAnnotation");
-  }
+    @Target
+    public void handleAnnotation() {
+        System.out.println("handleAnnotation");
+    }
 }

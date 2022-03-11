@@ -8,7 +8,7 @@ package com.wenky.starter.custom.basic.jvm;
  * @create: 2021-11-30 17:02
  */
 public class GCExample {
-  public static void main(String[] args) {
-    System.gc();
-  }
+    public static void main(String[] args) {
+        System.gc();
+    }
 }

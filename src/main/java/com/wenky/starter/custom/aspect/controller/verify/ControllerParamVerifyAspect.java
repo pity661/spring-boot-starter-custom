@@ -22,34 +22,34 @@ import org.springframework.core.annotation.Order;
 @Order(Integer.MIN_VALUE - 1)
 public class ControllerParamVerifyAspect {
 
-  @Pointcut(
-      "bean(*Controller) && args(com.wenky.starter.custom.aspect.controller.verify.VerifyInterface)")
-  public void execute() {}
+    @Pointcut(
+            "bean(*Controller) && args(com.wenky.starter.custom.aspect.controller.verify.VerifyInterface)")
+    public void execute() {}
 
-  // 接口请求参数校验切面
-  @Around("execute()")
-  public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
-    Parameter[] parameters =
-        ((MethodSignature) joinPoint.getSignature()).getMethod().getParameters();
-    // 打印参数注解信息
-    //    LoggerUtils.info(
-    //        Stream.of(parameters[0])
-    //            .map(Parameter::getAnnotations)
-    //            .flatMap(Stream::of)
-    //            .map(Annotation::toString)
-    //            .collect(Collectors.joining(",")));
-    if (parameters[0].isAnnotationPresent(NotVerify.class)) {
-      // 不做参数校验直接返回
-      return joinPoint.proceed();
+    // 接口请求参数校验切面
+    @Around("execute()")
+    public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        Parameter[] parameters =
+                ((MethodSignature) joinPoint.getSignature()).getMethod().getParameters();
+        // 打印参数注解信息
+        //    LoggerUtils.info(
+        //        Stream.of(parameters[0])
+        //            .map(Parameter::getAnnotations)
+        //            .flatMap(Stream::of)
+        //            .map(Annotation::toString)
+        //            .collect(Collectors.joining(",")));
+        if (parameters[0].isAnnotationPresent(NotVerify.class)) {
+            // 不做参数校验直接返回
+            return joinPoint.proceed();
+        }
+        // 参数检验处理
+        //    if (((VerifyInterface) (joinPoint.getArgs()[0])).verify()) {
+        //      return joinPoint.proceed();
+        //    }
+        //    throw new VerifyException("param verify fail!");
+
+        // 参数校验处理(子类自定义异常信息)
+        ((VerifyInterface) (joinPoint.getArgs()[0])).verify();
+        return joinPoint.proceed();
     }
-    // 参数检验处理
-    //    if (((VerifyInterface) (joinPoint.getArgs()[0])).verify()) {
-    //      return joinPoint.proceed();
-    //    }
-    //    throw new VerifyException("param verify fail!");
-
-    // 参数校验处理(子类自定义异常信息)
-    ((VerifyInterface) (joinPoint.getArgs()[0])).verify();
-    return joinPoint.proceed();
-  }
 }

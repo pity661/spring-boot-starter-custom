@@ -10,22 +10,22 @@ import org.springframework.http.HttpStatus;
  * @create: 2021-11-15 17:09
  */
 public enum RequestURIEnum {
-  OK(HttpStatus.OK),
-  CREATED(HttpStatus.CREATED),
-  FOUND(HttpStatus.FOUND),
-  BAD_REQUEST(HttpStatus.BAD_REQUEST),
-  UNAUTHORIZED(HttpStatus.UNAUTHORIZED),
-  PAYMENT_REQUIRED(HttpStatus.PAYMENT_REQUIRED),
-  NOT_FOUND(HttpStatus.NOT_FOUND),
-  INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR),
-  ;
-  private HttpStatus httpStatus;
+    OK(HttpStatus.OK),
+    CREATED(HttpStatus.CREATED),
+    FOUND(HttpStatus.FOUND),
+    BAD_REQUEST(HttpStatus.BAD_REQUEST),
+    UNAUTHORIZED(HttpStatus.UNAUTHORIZED),
+    PAYMENT_REQUIRED(HttpStatus.PAYMENT_REQUIRED),
+    NOT_FOUND(HttpStatus.NOT_FOUND),
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR),
+    ;
+    private HttpStatus httpStatus;
 
-  RequestURIEnum(HttpStatus httpStatus) {
-    this.httpStatus = httpStatus;
-  }
+    RequestURIEnum(HttpStatus httpStatus) {
+        this.httpStatus = httpStatus;
+    }
 
-  public Integer getRelativeUrl() {
-    return httpStatus.value();
-  }
+    public Integer getRelativeUrl() {
+        return httpStatus.value();
+    }
 }

@@ -8,11 +8,11 @@ package com.wenky.starter.custom.controller.support;
  * @create: 2021-03-03 18:45
  */
 public class VerifyException extends RuntimeException {
-  public VerifyException() {
-    super();
-  }
+    public VerifyException() {
+        super();
+    }
 
-  public VerifyException(String message) {
-    super(message);
-  }
+    public VerifyException(String message) {
+        super(message);
+    }
 }

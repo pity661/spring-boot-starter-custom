@@ -17,19 +17,19 @@ import org.springframework.web.client.RestTemplate;
  */
 @Component
 public class HtmlAnalysis {
-  @Autowired private RestTemplate template;
+    @Autowired private RestTemplate template;
 
-  public void htmlAnalysis() throws IOException {
-    String requestUrl =
-        "http://tools.scientiamobile.com/?user-agent-string=Mozilla/5.0 (Linux; Android 9; V1816A Build/PKQ1.180819.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36 VivoBrowser/9.1.15.0";
-    //    String htmlResult = template.getForObject(requestUrl, String.class);
-    //    Document document = Jsoup.parse(htmlResult);
-    Document document = Jsoup.connect(requestUrl).get();
-    for (Element element : document.getElementsByTag("tr")) {
-      if ("complete_device_name".equals(element.getElementsByClass("col-md-4 key").html())) {
-        System.out.println(element.getElementsByClass("col-md-8 value").html());
-        break;
-      }
+    public void htmlAnalysis() throws IOException {
+        String requestUrl =
+                "http://tools.scientiamobile.com/?user-agent-string=Mozilla/5.0 (Linux; Android 9; V1816A Build/PKQ1.180819.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.84 Mobile Safari/537.36 VivoBrowser/9.1.15.0";
+        //    String htmlResult = template.getForObject(requestUrl, String.class);
+        //    Document document = Jsoup.parse(htmlResult);
+        Document document = Jsoup.connect(requestUrl).get();
+        for (Element element : document.getElementsByTag("tr")) {
+            if ("complete_device_name".equals(element.getElementsByClass("col-md-4 key").html())) {
+                System.out.println(element.getElementsByClass("col-md-8 value").html());
+                break;
+            }
+        }
     }
-  }
 }

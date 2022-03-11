@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ExecutionServiceSerializableImpl implements ExecutionService, Serializable {
-  private static final long serialVersionUID = 3747287848679150880L;
+    private static final long serialVersionUID = 3747287848679150880L;
 
-  @Override
-  public void handle() {
-    System.out.println("handle");
-  }
+    @Override
+    public void handle() {
+        System.out.println("handle");
+    }
 }

@@ -11,16 +11,16 @@ import java.util.Queue;
  * @create: 2021-06-29 16:49
  */
 public class QueueExample {
-  public static void main(String[] args) {
-    queueTest();
-  }
+    public static void main(String[] args) {
+        queueTest();
+    }
 
-  private static void queueTest() {
-    // add offer
-    //
-    Queue<String> queue = new LinkedList<>();
-    queue.add("add");
-    queue.offer("offer");
-    System.out.println(queue.size());
-  }
+    private static void queueTest() {
+        // add offer
+        //
+        Queue<String> queue = new LinkedList<>();
+        queue.add("add");
+        queue.offer("offer");
+        System.out.println(queue.size());
+    }
 }

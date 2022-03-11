@@ -13,13 +13,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @create: 2021-03-03 10:09
  */
 public class WebConfig implements WebMvcConfigurer {
-  /**
-   * 添加参数解析，将参数的形式从下划线转化为驼峰
-   *
-   * @param argumentResolvers
-   */
-  @Override
-  public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-    argumentResolvers.add(new UnderlineToCamelArgumentResolver());
-  }
+    /**
+     * 添加参数解析，将参数的形式从下划线转化为驼峰
+     *
+     * @param argumentResolvers
+     */
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        argumentResolvers.add(new UnderlineToCamelArgumentResolver());
+    }
 }

@@ -10,14 +10,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class CacheGlueTest {
-  @Autowired private CacheGlue cacheGlue;
+    @Autowired private CacheGlue cacheGlue;
 
-  @Test
-  public void cacheTest() throws InterruptedException {
-    LoggerUtils.info(cacheGlue.mapCache());
-    LoggerUtils.info(cacheGlue.redisCache());
-    TimeUnit.SECONDS.sleep(1);
-    LoggerUtils.info(cacheGlue.mapCache());
-    LoggerUtils.info(cacheGlue.redisCache());
-  }
+    @Test
+    public void cacheTest() throws InterruptedException {
+        LoggerUtils.info(cacheGlue.mapCache());
+        LoggerUtils.info(cacheGlue.redisCache());
+        TimeUnit.SECONDS.sleep(1);
+        LoggerUtils.info(cacheGlue.mapCache());
+        LoggerUtils.info(cacheGlue.redisCache());
+    }
 }

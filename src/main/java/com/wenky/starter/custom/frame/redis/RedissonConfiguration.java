@@ -24,7 +24,7 @@ import org.springframework.context.annotation.Import;
 @Import({RedissonAutoConfig.class, RedissonLock.class})
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedissonConfiguration {
-  //  public RedissonConfiguration() {
-  //    LoggerUtils.construct();
-  //  }
+    //  public RedissonConfiguration() {
+    //    LoggerUtils.construct();
+    //  }
 }

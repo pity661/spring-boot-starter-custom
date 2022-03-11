@@ -3,6 +3,7 @@ package com.wenky.starter.custom.controller;
 import com.wenky.starter.custom.controller.health.HealthController;
 import com.wenky.starter.custom.controller.health.HealthProperties;
 import com.wenky.starter.custom.controller.support.GlobalDefaultExceptionHandler;
+import com.wenky.starter.custom.controller.support.RequestBodyHandler;
 import com.wenky.starter.custom.controller.switch1.SwitchController;
 import com.wenky.starter.custom.controller.switch1.SwitchProperties;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -27,21 +28,29 @@ import org.springframework.context.annotation.Configuration;
 @AutoConfigureAfter(ErrorMvcAutoConfiguration.class)
 public class ControllerAutoConfiguration {
 
-  @Bean
-  @ConditionalOnMissingBean(name = "healthController", search = SearchStrategy.CURRENT)
-  public HealthController healthController(HealthProperties healthProperties) {
-    return new HealthController(healthProperties);
-  }
+    @Bean
+    @ConditionalOnMissingBean(name = "healthController", search = SearchStrategy.CURRENT)
+    public HealthController healthController(HealthProperties healthProperties) {
+        return new HealthController(healthProperties);
+    }
 
-  @Bean
-  @ConditionalOnMissingBean(name = "globalDefaultExceptionHandler", search = SearchStrategy.CURRENT)
-  public GlobalDefaultExceptionHandler globalDefaultExceptionHandler() {
-    return new GlobalDefaultExceptionHandler();
-  }
+    @Bean
+    @ConditionalOnMissingBean(
+            name = "globalDefaultExceptionHandler",
+            search = SearchStrategy.CURRENT)
+    public GlobalDefaultExceptionHandler globalDefaultExceptionHandler() {
+        return new GlobalDefaultExceptionHandler();
+    }
 
-  @Bean
-  @ConditionalOnMissingBean(name = "switchController", search = SearchStrategy.CURRENT)
-  public SwitchController switchController(SwitchProperties switchProperties) {
-    return new SwitchController(switchProperties);
-  }
+    @Bean
+    @ConditionalOnMissingBean(name = "switchController", search = SearchStrategy.CURRENT)
+    public SwitchController switchController(SwitchProperties switchProperties) {
+        return new SwitchController(switchProperties);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(name = "requestBodyHandler", search = SearchStrategy.CURRENT)
+    public RequestBodyHandler requestBodyHandler() {
+        return new RequestBodyHandler();
+    }
 }

@@ -17,18 +17,18 @@ import org.springframework.context.annotation.Bean;
  */
 @ConditionalOnMissingBean(name = "redissonClient")
 public class RedissonAutoConfig {
-  //  public RedissonAutoConfig() {
-  //    LoggerUtils.construct();
-  //  }
-  @Autowired private RedisProperties redisProperties;
+    //  public RedissonAutoConfig() {
+    //    LoggerUtils.construct();
+    //  }
+    @Autowired private RedisProperties redisProperties;
 
-  /** can be customized * */
-  @Bean(name = "redissonClient")
-  RedissonClient redissonSingle() {
-    Config config = new Config();
-    config
-        .useSingleServer()
-        .setAddress("redis://" + redisProperties.getHost() + ":" + redisProperties.getPort());
-    return Redisson.create(config);
-  }
+    /** can be customized * */
+    @Bean(name = "redissonClient")
+    RedissonClient redissonSingle() {
+        Config config = new Config();
+        config.useSingleServer()
+                .setAddress(
+                        "redis://" + redisProperties.getHost() + ":" + redisProperties.getPort());
+        return Redisson.create(config);
+    }
 }

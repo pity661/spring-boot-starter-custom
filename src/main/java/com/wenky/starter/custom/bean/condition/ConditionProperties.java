@@ -17,17 +17,17 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConditionalOnExpression(value = "'${wenky.condition.enable}'.equals('true')")
 @ConfigurationProperties(prefix = "wenky.condition")
 public class ConditionProperties {
-  ConditionProperties() {
-    LoggerUtils.construct();
-  }
+    ConditionProperties() {
+        LoggerUtils.construct();
+    }
 
-  private Boolean enable;
+    private Boolean enable;
 
-  public Boolean getEnable() {
-    return enable;
-  }
+    public Boolean getEnable() {
+        return enable;
+    }
 
-  public void setEnable(Boolean enable) {
-    this.enable = enable;
-  }
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
 }

@@ -8,10 +8,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class DownloadFileExampleTest {
-  @Autowired private DownloadFileExample downloadFileExample;
+    @Autowired private DownloadFileExample downloadFileExample;
 
-  @Test
-  public void test() {
-    downloadFileExample.downloadFile();
-  }
+    @Test
+    public void test() {
+        downloadFileExample.downloadFile();
+    }
 }

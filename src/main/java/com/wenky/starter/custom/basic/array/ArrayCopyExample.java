@@ -13,20 +13,20 @@ import java.util.stream.Stream;
  */
 public class ArrayCopyExample {
 
-  public static void main(String[] args) {
-    String[] a = {"1", "2"};
-    // 12
-    System.out.println(Stream.of(a).collect(Collectors.joining()));
-    String[] b = a.clone();
-    b[0] = "2";
-    // 22
-    System.out.println(Stream.of(b).collect(Collectors.joining()));
-    String[] c = Arrays.copyOf(b, b.length);
-    // 22
-    System.out.println(Stream.of(c).collect(Collectors.joining()));
-    String[] d = new String[2];
-    System.arraycopy(c, 0, d, 0, 2);
-    // 22
-    System.out.println(Stream.of(d).collect(Collectors.joining()));
-  }
+    public static void main(String[] args) {
+        String[] a = {"1", "2"};
+        // 12
+        System.out.println(Stream.of(a).collect(Collectors.joining()));
+        String[] b = a.clone();
+        b[0] = "2";
+        // 22
+        System.out.println(Stream.of(b).collect(Collectors.joining()));
+        String[] c = Arrays.copyOf(b, b.length);
+        // 22
+        System.out.println(Stream.of(c).collect(Collectors.joining()));
+        String[] d = new String[2];
+        System.arraycopy(c, 0, d, 0, 2);
+        // 22
+        System.out.println(Stream.of(d).collect(Collectors.joining()));
+    }
 }

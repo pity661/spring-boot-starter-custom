@@ -15,17 +15,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler {
-  @ExceptionHandler(Exception.class)
-  @ResponseBody
-  public ResponseEntity<String> exceptionHandler(Exception e) {
-    LoggerUtils.exception("GlobalDefaultException", e);
-    return ResponseEntity.ok("GlobalDefaultException");
-  }
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public ResponseEntity<String> exceptionHandler(Exception e) {
+        LoggerUtils.exception("GlobalDefaultException", e);
+        return ResponseEntity.ok("GlobalDefaultException");
+    }
 
-  @ExceptionHandler(VerifyException.class)
-  @ResponseBody
-  public ResponseEntity<String> verifyExceptionHandler(VerifyException e) {
-    LoggerUtils.exception(LoggerUtils.getBizAction(), e);
-    return ResponseEntity.ok(e.getMessage());
-  }
+    @ExceptionHandler(VerifyException.class)
+    @ResponseBody
+    public ResponseEntity<String> verifyExceptionHandler(VerifyException e) {
+        LoggerUtils.exception(LoggerUtils.getBizAction(), e);
+        return ResponseEntity.ok(e.getMessage());
+    }
 }

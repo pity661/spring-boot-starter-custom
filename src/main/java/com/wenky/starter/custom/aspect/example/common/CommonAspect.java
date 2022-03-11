@@ -15,51 +15,52 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class CommonAspect {
-  @Pointcut("this(com.wenky.starter.custom.aspect.example.common.service.CommonService)")
-  private void thisServicePointcut() {}
+    @Pointcut("this(com.wenky.starter.custom.aspect.example.common.service.CommonService)")
+    private void thisServicePointcut() {}
 
-  @Before("thisServicePointcut()")
-  public void beforeThisServicePointcut() {
-    System.out.println("thisServicePointcut");
-  }
+    @Before("thisServicePointcut()")
+    public void beforeThisServicePointcut() {
+        System.out.println("thisServicePointcut");
+    }
 
-  @Pointcut("target(com.wenky.starter.custom.aspect.example.common.service.CommonService)")
-  private void targetServicePointcut() {}
+    @Pointcut("target(com.wenky.starter.custom.aspect.example.common.service.CommonService)")
+    private void targetServicePointcut() {}
 
-  @Before("targetServicePointcut()")
-  public void beforeTargetServicePointcut() {
-    System.out.println("targetServicePointcut");
-  }
+    @Before("targetServicePointcut()")
+    public void beforeTargetServicePointcut() {
+        System.out.println("targetServicePointcut");
+    }
 
-  @Pointcut("this(com.wenky.starter.custom.aspect.example.common.service.impl.CommonServiceImpl)")
-  private void thisServiceImplPointcut() {}
+    @Pointcut("this(com.wenky.starter.custom.aspect.example.common.service.impl.CommonServiceImpl)")
+    private void thisServiceImplPointcut() {}
 
-  @Before("thisServiceImplPointcut()")
-  public void beforeThisServiceImplPointcut() {
-    System.out.println("thisServiceImplPointcut");
-  }
+    @Before("thisServiceImplPointcut()")
+    public void beforeThisServiceImplPointcut() {
+        System.out.println("thisServiceImplPointcut");
+    }
 
-  @Pointcut("target(com.wenky.starter.custom.aspect.example.common.service.impl.CommonServiceImpl)")
-  private void targetServiceImplPointcut() {}
+    @Pointcut(
+            "target(com.wenky.starter.custom.aspect.example.common.service.impl.CommonServiceImpl)")
+    private void targetServiceImplPointcut() {}
 
-  @Before("targetServiceImplPointcut()")
-  public void beforeTargetServiceImplPointcut() {
-    System.out.println("targetServiceImplPointcut");
-  }
+    @Before("targetServiceImplPointcut()")
+    public void beforeTargetServiceImplPointcut() {
+        System.out.println("targetServiceImplPointcut");
+    }
 
-  @Pointcut("this(com.wenky.starter.custom.aspect.example.common.bean.CommonBean)")
-  private void thisBeanPointcut() {}
+    @Pointcut("this(com.wenky.starter.custom.aspect.example.common.bean.CommonBean)")
+    private void thisBeanPointcut() {}
 
-  @Before("thisBeanPointcut()")
-  public void beforeThisBeanPointcut() {
-    System.out.println("thisBeanPointcut");
-  }
+    @Before("thisBeanPointcut()")
+    public void beforeThisBeanPointcut() {
+        System.out.println("thisBeanPointcut");
+    }
 
-  @Pointcut("target(com.wenky.starter.custom.aspect.example.common.bean.CommonBean)")
-  private void targetBeanPointcut() {}
+    @Pointcut("target(com.wenky.starter.custom.aspect.example.common.bean.CommonBean)")
+    private void targetBeanPointcut() {}
 
-  @Before("targetBeanPointcut()")
-  public void beforeTargetBeanPointcut() {
-    System.out.println("targetBeanPointcut");
-  }
+    @Before("targetBeanPointcut()")
+    public void beforeTargetBeanPointcut() {
+        System.out.println("targetBeanPointcut");
+    }
 }

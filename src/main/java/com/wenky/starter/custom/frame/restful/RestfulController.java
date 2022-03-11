@@ -18,39 +18,39 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 public class RestfulController {
-  @Autowired private HttpServletRequest request;
-  @Autowired private HttpServletResponse response;
+    @Autowired private HttpServletRequest request;
+    @Autowired private HttpServletResponse response;
 
-  @RequestMapping("/200")
-  public ResponseEntity<String> OK() {
-    return ResponseEntity.ok("message");
-  }
+    @RequestMapping("/200")
+    public ResponseEntity<String> OK() {
+        return ResponseEntity.ok("message");
+    }
 
-  @RequestMapping("/302")
-  public void FOUND(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // http://127.0.0.1:8080
-    String basePath =
-        request.getScheme()
-            + "://"
-            + request.getServerName()
-            + ":"
-            + request.getServerPort()
-            + request.getContextPath();
-    response.sendRedirect(basePath + "/200");
-  }
+    @RequestMapping("/302")
+    public void FOUND(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // http://127.0.0.1:8080
+        String basePath =
+                request.getScheme()
+                        + "://"
+                        + request.getServerName()
+                        + ":"
+                        + request.getServerPort()
+                        + request.getContextPath();
+        response.sendRedirect(basePath + "/200");
+    }
 
-  @RequestMapping("/{value}")
-  public ResponseEntity<String> CREATED(@PathVariable Integer value) {
-    return new ResponseEntity("message", HttpStatus.valueOf(value));
-  }
+    @RequestMapping("/{value}")
+    public ResponseEntity<String> CREATED(@PathVariable Integer value) {
+        return new ResponseEntity("message", HttpStatus.valueOf(value));
+    }
 
-  @PostMapping("/post")
-  public ResponseEntity post(@RequestBody PostParam param) {
-    return ResponseEntity.ok(param);
-  }
+    @PostMapping("/post")
+    public ResponseEntity post(@RequestBody PostParam param) {
+        return ResponseEntity.ok(param);
+    }
 
-  @GetMapping("/get")
-  public ResponseEntity get(GetParam param) {
-    return ResponseEntity.ok(param);
-  }
+    @GetMapping("/get")
+    public ResponseEntity get(GetParam param) {
+        return ResponseEntity.ok(param);
+    }
 }

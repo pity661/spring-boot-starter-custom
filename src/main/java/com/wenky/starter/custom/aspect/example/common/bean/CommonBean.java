@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommonBean {
 
-  public void handle() {
-    System.out.println("handle");
-  }
+    public void handle() {
+        System.out.println("handle");
+    }
 }

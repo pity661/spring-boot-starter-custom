@@ -8,31 +8,31 @@ package com.wenky.starter.custom.frame.restful;
  * @create: 2021-11-15 21:04
  */
 public class PostParam {
-  private Integer phone;
-  private String name;
+    private Integer phone;
+    private String name;
 
-  public static PostParam newInstance() {
-    PostParam param = new PostParam();
-    param.setName("wenky");
-    param.setPhone(10086);
-    return param;
-  }
+    public static PostParam newInstance() {
+        PostParam param = new PostParam();
+        param.setName("wenky");
+        param.setPhone(10086);
+        return param;
+    }
 
-  public Integer getPhone() {
-    return phone;
-  }
+    public Integer getPhone() {
+        return phone;
+    }
 
-  public PostParam setPhone(Integer phone) {
-    this.phone = phone;
-    return this;
-  }
+    public PostParam setPhone(Integer phone) {
+        this.phone = phone;
+        return this;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public PostParam setName(String name) {
-    this.name = name;
-    return this;
-  }
+    public PostParam setName(String name) {
+        this.name = name;
+        return this;
+    }
 }

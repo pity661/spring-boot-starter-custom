@@ -6,10 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class RedissonLockTest {
-  @Autowired private RedissonLock redissonLock;
+    @Autowired private RedissonLock redissonLock;
 
-  @Test
-  public void handleFunctionWithSeveralTryLockTest() {
-    redissonLock.handleFunctionWithTryLock(a -> a + 1, 1, "aaa");
-  }
+    @Test
+    public void handleFunctionWithSeveralTryLockTest() {
+        redissonLock.handleFunctionWithTryLock(a -> a + 1, 1, "aaa");
+    }
 }

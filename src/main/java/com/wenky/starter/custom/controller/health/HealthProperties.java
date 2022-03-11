@@ -11,24 +11,24 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @ConfigurationProperties(prefix = "wenky.health")
 public class HealthProperties {
-  /** default health check path "/${context-path}/health" */
-  private String path;
-  /** health controller available */
-  private Boolean online = true;
+    /** default health check path "/${context-path}/health" */
+    private String path;
+    /** health controller available */
+    private Boolean online = true;
 
-  public String getPath() {
-    return path;
-  }
+    public String getPath() {
+        return path;
+    }
 
-  public void setPath(String path) {
-    this.path = path;
-  }
+    public void setPath(String path) {
+        this.path = path;
+    }
 
-  public Boolean getOnline() {
-    return online;
-  }
+    public Boolean getOnline() {
+        return online;
+    }
 
-  public void setOnline(Boolean online) {
-    this.online = online;
-  }
+    public void setOnline(Boolean online) {
+        this.online = online;
+    }
 }

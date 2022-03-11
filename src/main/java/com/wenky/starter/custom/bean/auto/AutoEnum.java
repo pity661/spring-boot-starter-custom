@@ -8,7 +8,7 @@ package com.wenky.starter.custom.bean.auto;
  * @create: 2020-12-04 17:55
  */
 public enum AutoEnum {
-  FIRST,
-  SECOND,
-  THIRD
+    FIRST,
+    SECOND,
+    THIRD
 }

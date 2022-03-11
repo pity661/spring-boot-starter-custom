@@ -15,7 +15,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 // 如果没有@ConditionalOnBean就算ConditionProperties不被注入ConditionConfiguration也会被注入
 @AutoConfigureAfter(ConditionProperties.class)
 public class ConditionConfiguration {
-  ConditionConfiguration() {
-    LoggerUtils.construct();
-  }
+    ConditionConfiguration() {
+        LoggerUtils.construct();
+    }
 }

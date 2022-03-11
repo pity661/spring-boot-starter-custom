@@ -16,79 +16,79 @@ import org.apache.commons.lang3.time.DateUtils;
  * @create: 2020-12-25 10:15
  */
 public class CalculateDateUtils {
-  // 当前时间加上指定天数
-  public static Date addDays(Integer amount) {
-    return addDays(new Date(), amount);
-  }
-  // 加上指定天数
-  public static Date addDays(Date date, Integer amount) {
-    return DateUtils.addDays(date, amount);
-  }
-
-  public static Date addMinutes(Date date, Integer amount) {
-    return calculate(date, amount, ChronoUnit.MINUTES);
-  }
-
-  public static Date addSeconds(Date date, Integer amount) {
-    return calculate(date, amount, ChronoUnit.SECONDS);
-  }
-  // 当前时间加上指定时间间隔
-  private static Date calculate(Date date, Integer amount, ChronoUnit chronoUnit) {
-    LocalDateTime localDateTime = DateTransformUtils.date2LocalDateTime(date);
-    localDateTime = localDateTime.plus(amount, chronoUnit);
-    return DateTransformUtils.localDateTime2DateTime(localDateTime);
-  }
-
-  // 计算时间差 localDate
-  public static Integer getDaysInterval(LocalDate start, LocalDate end) {
-    return Period.between(start, end).getDays();
-  }
-
-  // 计算时间差 localTime
-  public static Integer getDaysInterval(LocalTime start, LocalTime end) {
-    return Math.toIntExact(ChronoUnit.DAYS.between(start, end));
-  }
-
-  // 计算时间差 date
-  public static Integer getDaysInterval(Date start, Date end) {
-    return Math.toIntExact(ChronoUnit.DAYS.between(start.toInstant(), end.toInstant()));
-  }
-
-  // 计算小时
-  public static Integer getHoursInterval(Date start, Date end) {
-    return Math.toIntExact(ChronoUnit.HOURS.between(start.toInstant(), end.toInstant()));
-  }
-
-  // 计算分钟
-  public static Integer getMinutesInterval(Date start, Date end) {
-    return Math.toIntExact(ChronoUnit.MINUTES.between(start.toInstant(), end.toInstant()));
-  }
-
-  // 计算秒
-  public static Integer getSecondsInterval(Date start, Date end) {
-    return Math.toIntExact(ChronoUnit.SECONDS.between(start.toInstant(), end.toInstant()));
-  }
-
-  public static Integer getSecondsIntervalEndToday() {
-    return getIntervalEndToday(ChronoUnit.SECONDS);
-  }
-  // 计算过完今天还剩多少分钟
-  public static Integer getMinutesIntervalEndToday() {
-    return getIntervalEndToday(ChronoUnit.MINUTES);
-  }
-
-  public static Integer getHoursIntervalEndToday() {
-    return getIntervalEndToday(ChronoUnit.HOURS);
-  }
-
-  public static Integer getIntervalEndToday(ChronoUnit chronoUnit) {
-    if (chronoUnit == null) {
-      throw new NullPointerException();
+    // 当前时间加上指定天数
+    public static Date addDays(Integer amount) {
+        return addDays(new Date(), amount);
     }
-    Date now = new Date();
-    LocalDate localDate = DateTransformUtils.date2LocalDate(now);
-    LocalDateTime localDateTime = DateTransformUtils.getEndOfDay(localDate);
-    Date endOfDay = DateTransformUtils.localDateTime2DateTime(localDateTime);
-    return Math.toIntExact(chronoUnit.between(now.toInstant(), endOfDay.toInstant()));
-  }
+    // 加上指定天数
+    public static Date addDays(Date date, Integer amount) {
+        return DateUtils.addDays(date, amount);
+    }
+
+    public static Date addMinutes(Date date, Integer amount) {
+        return calculate(date, amount, ChronoUnit.MINUTES);
+    }
+
+    public static Date addSeconds(Date date, Integer amount) {
+        return calculate(date, amount, ChronoUnit.SECONDS);
+    }
+    // 当前时间加上指定时间间隔
+    private static Date calculate(Date date, Integer amount, ChronoUnit chronoUnit) {
+        LocalDateTime localDateTime = DateTransformUtils.date2LocalDateTime(date);
+        localDateTime = localDateTime.plus(amount, chronoUnit);
+        return DateTransformUtils.localDateTime2DateTime(localDateTime);
+    }
+
+    // 计算时间差 localDate
+    public static Integer getDaysInterval(LocalDate start, LocalDate end) {
+        return Period.between(start, end).getDays();
+    }
+
+    // 计算时间差 localTime
+    public static Integer getDaysInterval(LocalTime start, LocalTime end) {
+        return Math.toIntExact(ChronoUnit.DAYS.between(start, end));
+    }
+
+    // 计算时间差 date
+    public static Integer getDaysInterval(Date start, Date end) {
+        return Math.toIntExact(ChronoUnit.DAYS.between(start.toInstant(), end.toInstant()));
+    }
+
+    // 计算小时
+    public static Integer getHoursInterval(Date start, Date end) {
+        return Math.toIntExact(ChronoUnit.HOURS.between(start.toInstant(), end.toInstant()));
+    }
+
+    // 计算分钟
+    public static Integer getMinutesInterval(Date start, Date end) {
+        return Math.toIntExact(ChronoUnit.MINUTES.between(start.toInstant(), end.toInstant()));
+    }
+
+    // 计算秒
+    public static Integer getSecondsInterval(Date start, Date end) {
+        return Math.toIntExact(ChronoUnit.SECONDS.between(start.toInstant(), end.toInstant()));
+    }
+
+    public static Integer getSecondsIntervalEndToday() {
+        return getIntervalEndToday(ChronoUnit.SECONDS);
+    }
+    // 计算过完今天还剩多少分钟
+    public static Integer getMinutesIntervalEndToday() {
+        return getIntervalEndToday(ChronoUnit.MINUTES);
+    }
+
+    public static Integer getHoursIntervalEndToday() {
+        return getIntervalEndToday(ChronoUnit.HOURS);
+    }
+
+    public static Integer getIntervalEndToday(ChronoUnit chronoUnit) {
+        if (chronoUnit == null) {
+            throw new NullPointerException();
+        }
+        Date now = new Date();
+        LocalDate localDate = DateTransformUtils.date2LocalDate(now);
+        LocalDateTime localDateTime = DateTransformUtils.getEndOfDay(localDate);
+        Date endOfDay = DateTransformUtils.localDateTime2DateTime(localDateTime);
+        return Math.toIntExact(chronoUnit.between(now.toInstant(), endOfDay.toInstant()));
+    }
 }

@@ -11,8 +11,8 @@ import com.wenky.starter.custom.aspect.example.common.annotation.A2;
  */
 @A2
 public class Man extends Human {
-  @Override
-  public void run() {
-    System.out.println("Man runs.");
-  }
+    @Override
+    public void run() {
+        System.out.println("Man runs.");
+    }
 }

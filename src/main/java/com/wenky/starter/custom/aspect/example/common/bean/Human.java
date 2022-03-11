@@ -11,15 +11,15 @@ import com.wenky.starter.custom.aspect.example.common.annotation.A1;
  */
 @A1
 public class Human implements Animal {
-  public void say(String sentence) {
-    System.out.println("Human says:" + sentence);
-  }
+    public void say(String sentence) {
+        System.out.println("Human says:" + sentence);
+    }
 
-  public void run() {
-    System.out.println("Human runs.");
-  }
+    public void run() {
+        System.out.println("Human runs.");
+    }
 
-  public void jump() {
-    System.out.println("Human jump.");
-  }
+    public void jump() {
+        System.out.println("Human jump.");
+    }
 }

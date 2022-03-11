@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
  */
 @Service(value = "executionServiceAnnotationImpl")
 public class ExecutionServiceAnnotationImpl implements ExecutionService {
-  @Target
-  @Override
-  public void handle() {
-    System.out.println("handle");
-  }
+    @Target
+    @Override
+    public void handle() {
+        System.out.println("handle");
+    }
 }

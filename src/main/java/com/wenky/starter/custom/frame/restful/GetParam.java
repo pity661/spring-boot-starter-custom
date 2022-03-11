@@ -9,31 +9,31 @@ package com.wenky.starter.custom.frame.restful;
  */
 public class GetParam {
 
-  private String phone;
-  private String name;
+    private String phone;
+    private String name;
 
-  public static GetParam newInstance() {
-    GetParam param = new GetParam();
-    param.setName("wenky+");
-    param.setPhone("10086");
-    return param;
-  }
+    public static GetParam newInstance() {
+        GetParam param = new GetParam();
+        param.setName("wenky+");
+        param.setPhone("10086");
+        return param;
+    }
 
-  public String getPhone() {
-    return phone;
-  }
+    public String getPhone() {
+        return phone;
+    }
 
-  public GetParam setPhone(String phone) {
-    this.phone = phone;
-    return this;
-  }
+    public GetParam setPhone(String phone) {
+        this.phone = phone;
+        return this;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public GetParam setName(String name) {
-    this.name = name;
-    return this;
-  }
+    public GetParam setName(String name) {
+        this.name = name;
+        return this;
+    }
 }

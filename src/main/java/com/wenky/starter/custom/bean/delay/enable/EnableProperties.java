@@ -14,28 +14,28 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 // 需要在spring.factories中定义，或通过@EnableConfigurationProperties注入
 @ConditionalOnProperty(
-    prefix = "wenky.enable",
-    value = "enable",
-    havingValue = "true",
-    matchIfMissing = false)
+        prefix = "wenky.enable",
+        value = "enable",
+        havingValue = "true",
+        matchIfMissing = false)
 @ConfigurationProperties(prefix = "wenky.enable")
 public class EnableProperties {
-  EnableProperties() {
-    LoggerUtils.construct();
-  }
+    EnableProperties() {
+        LoggerUtils.construct();
+    }
 
-  private Boolean enable;
+    private Boolean enable;
 
-  public Boolean getEnable() {
-    return enable;
-  }
+    public Boolean getEnable() {
+        return enable;
+    }
 
-  public void setEnable(Boolean enable) {
-    this.enable = enable;
-  }
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
 
-  @Override
-  public String toString() {
-    return new ToStringBuilder(this).append("enable", enable).toString();
-  }
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("enable", enable).toString();
+    }
 }

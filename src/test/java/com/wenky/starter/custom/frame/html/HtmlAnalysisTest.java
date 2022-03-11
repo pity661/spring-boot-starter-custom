@@ -9,10 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class HtmlAnalysisTest {
-  @Autowired private HtmlAnalysis htmlAnalysis;
+    @Autowired private HtmlAnalysis htmlAnalysis;
 
-  @Test
-  public void htmlAnalysisTest() throws IOException {
-    htmlAnalysis.htmlAnalysis();
-  }
+    @Test
+    public void htmlAnalysisTest() throws IOException {
+        htmlAnalysis.htmlAnalysis();
+    }
 }

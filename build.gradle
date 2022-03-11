@@ -54,6 +54,7 @@ task runFormat(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main 'com.google.googlejavaformat.java.Main'
     args '--replace'
+    args '--aosp'
     args mainJavaFiles
     args sourceSets.test.allJava.files
 }
@@ -72,6 +73,8 @@ dependencies {
 //    implementation 'org.redisson:redisson-spring-boot-starter:3.13.6'
     implementation 'org.redisson:redisson:3.14.0'
 
+    implementation 'org.apache.tika:tika-core:1.18'
+    implementation 'org.projectlombok:lombok:1.18.22'
 
     // [1]RUN_FORMAT
     implementation 'com.google.googlejavaformat:google-java-format:1.7'
@@ -83,6 +86,7 @@ dependencies {
     compile 'com.google.code.gson:gson:+'
     compile 'org.apache.commons:commons-lang3:3.5'
     compile 'commons-beanutils:commons-beanutils:1.9.3'
+    compile 'commons-io:commons-io:2.6'
     compile 'commons-codec:commons-codec:1.10'
     compile 'commons-fileupload:commons-fileupload:1.4'
 

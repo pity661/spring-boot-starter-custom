@@ -14,24 +14,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExecutionBean {
 
-  public void handle() {
-    System.out.println("handle");
-  }
+    public void handle() {
+        System.out.println("handle");
+    }
 
-  public void handle(@Target String a, @Target String b) {
-    System.out.println(String.format("handle, a:[%s], b:[%s]", a, b));
-  }
+    public void handle(@Target String a, @Target String b) {
+        System.out.println(String.format("handle, a:[%s], b:[%s]", a, b));
+    }
 
-  public void handle(Param param) {
-    System.out.println("handle");
-  }
+    public void handle(Param param) {
+        System.out.println("handle");
+    }
 
-  @Target
-  public static class Param {}
+    @Target
+    public static class Param {}
 
-  public void handle(Param1 param) {
-    System.out.println("handle");
-  }
+    public void handle(Param1 param) {
+        System.out.println("handle");
+    }
 
-  public static class Param1 {}
+    public static class Param1 {}
 }

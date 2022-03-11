@@ -19,7 +19,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 @ConditionalOnBean(ImportProperties.class) // [2]
 @AutoConfigureAfter(DelayConfiguration.class) // [2]
 public class ImportConfiguration {
-  ImportConfiguration() {
-    LoggerUtils.construct();
-  }
+    ImportConfiguration() {
+        LoggerUtils.construct();
+    }
 }

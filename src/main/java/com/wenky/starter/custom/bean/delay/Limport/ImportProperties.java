@@ -16,22 +16,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "wenky.import")
 public class ImportProperties {
 
-  ImportProperties() {
-    LoggerUtils.construct();
-  }
+    ImportProperties() {
+        LoggerUtils.construct();
+    }
 
-  private Boolean enable;
+    private Boolean enable;
 
-  public Boolean getEnable() {
-    return enable;
-  }
+    public Boolean getEnable() {
+        return enable;
+    }
 
-  public void setEnable(Boolean enable) {
-    this.enable = enable;
-  }
+    public void setEnable(Boolean enable) {
+        this.enable = enable;
+    }
 
-  @Override
-  public String toString() {
-    return new ToStringBuilder(this).append("enable", enable).toString();
-  }
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).append("enable", enable).toString();
+    }
 }

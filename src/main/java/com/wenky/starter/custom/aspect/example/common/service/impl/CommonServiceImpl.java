@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CommonServiceImpl implements CommonService {
-  @Override
-  public void handle() {
-    System.out.println("handle");
-  }
+    @Override
+    public void handle() {
+        System.out.println("handle");
+    }
 }
