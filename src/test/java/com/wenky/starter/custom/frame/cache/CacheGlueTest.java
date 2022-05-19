@@ -20,4 +20,11 @@ class CacheGlueTest {
         LoggerUtils.info(cacheGlue.mapCache());
         LoggerUtils.info(cacheGlue.redisCache());
     }
+
+    @Test
+    public void ehCacheTest() throws InterruptedException {
+        LoggerUtils.info(cacheGlue.ehCache());
+        TimeUnit.SECONDS.sleep(1);
+        LoggerUtils.info(cacheGlue.ehCache());
+    }
 }

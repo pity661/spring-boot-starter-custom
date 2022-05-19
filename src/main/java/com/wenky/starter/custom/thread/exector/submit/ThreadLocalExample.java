@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
  * @email: huwenqi@panda-fintech.com
  * @create: 2021-11-03 17:13
  */
-public class TestExapmple {
+public class ThreadLocalExample {
     private static ThreadLocal<Integer> aa = new ThreadLocal<>();
 
     static {

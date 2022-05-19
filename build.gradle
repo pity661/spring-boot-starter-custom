@@ -68,13 +68,21 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-cache'
 
+    implementation 'net.sf.ehcache:ehcache'
+
     // redisson 引入redisson-starter依赖后，不需要再引入starter-data-redis依赖
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 //    implementation 'org.redisson:redisson-spring-boot-starter:3.13.6'
     implementation 'org.redisson:redisson:3.14.0'
 
+    // InputStream 流文件类型
     implementation 'org.apache.tika:tika-core:1.18'
     implementation 'org.projectlombok:lombok:1.18.22'
+    // sftp 用vfs2的时候jsch依赖也必须存在
+    implementation 'com.jcraft:jsch:0.1.55'
+    implementation 'org.apache.commons:commons-vfs2:2.4'
+
+    implementation 'commons-net:commons-net:3.8.0'
 
     // [1]RUN_FORMAT
     implementation 'com.google.googlejavaformat:google-java-format:1.7'

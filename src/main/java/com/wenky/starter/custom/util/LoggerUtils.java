@@ -21,6 +21,10 @@ public class LoggerUtils {
         info(getInvokeClassName() + " - 构造方法执行");
     }
 
+    public static void methodInfo() {
+        info(getInvokeMethodName() + " - 方法执行");
+    }
+
     public static void info(String message) {
         getLogger().info(message);
     }
@@ -30,6 +34,10 @@ public class LoggerUtils {
     }
 
     public static void exception(Exception e) {
+        exception(getBizAction(), e);
+    }
+
+    public static void exception(Throwable e) {
         exception(getBizAction(), e);
     }
 
@@ -56,6 +64,18 @@ public class LoggerUtils {
                         .map(StackTraceElement::getClassName)
                         .orElse(TARGET_CLASS_NAME);
         return className;
+    }
+
+    private static String getInvokeMethodName() {
+        String methodName =
+                Arrays.stream(Thread.currentThread().getStackTrace())
+                        // skip the first one, thread class
+                        .skip(1)
+                        .filter(single -> !TARGET_CLASS_NAME.equals(single.getClassName()))
+                        .findFirst()
+                        .map(StackTraceElement::getMethodName)
+                        .orElse(TARGET_CLASS_NAME);
+        return methodName;
     }
 
     //  public static Class getCallerClass() {

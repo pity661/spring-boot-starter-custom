@@ -1,7 +1,9 @@
 package com.wenky.starter.custom.frame.guava;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -28,7 +30,17 @@ public class ListsExample {
         System.out.println(partitionList);
     }
 
+    // 交集
+    public static void intersection() {
+        Set<Integer> set1 = Sets.newHashSet(1, 2, 3);
+        Set<Integer> set2 = Sets.newHashSet(1, 2);
+
+        Sets.SetView<Integer> integerSetView = Sets.intersection(set1, set2);
+        integerSetView.forEach(System.out::println);
+    }
+
     public static void main(String[] args) {
-        partition();
+        //        partition();
+        intersection();
     }
 }

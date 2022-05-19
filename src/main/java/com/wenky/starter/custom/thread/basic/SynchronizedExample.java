@@ -76,9 +76,9 @@ public class SynchronizedExample {
         public synchronized void push(String value) {
             synchronized (this) {
                 list.add(value);
-                 notify();
+                notify();
                 // [1] 如果这里用notifyAll，下面就不需要加
-//                notifyAll();
+                // notifyAll();
             }
         }
 
@@ -92,7 +92,7 @@ public class SynchronizedExample {
                 }
                 String result = list.remove(list.size() - 1);
                 // [2] 如果push用notify，这里就要加notify
-                 notify();
+                notify();
                 return result;
             }
         }

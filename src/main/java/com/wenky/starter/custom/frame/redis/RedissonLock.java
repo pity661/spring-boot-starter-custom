@@ -1,8 +1,10 @@
 package com.wenky.starter.custom.frame.redis;
 
 import com.wenky.starter.custom.util.LoggerUtils;
+import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
+import org.redisson.api.RFuture;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,27 @@ public class RedissonLock {
 
     @Autowired private RedissonClient redissonClient;
     @Autowired private RedissonProperties redissonProperties;
+
+    public void lockAsyncExample() {
+        RLock rLock = redissonClient.getLock("a");
+        RFuture<Void> future = rLock.lockAsync();
+        CompletionStage stage =
+                future.whenComplete(
+                        (res, exception) -> {
+                            // do someting
+                            rLock.unlock();
+                        });
+        future.join();
+    }
+
+    public void multiLockExample() {
+        RLock rLock1 = redissonClient.getLock("1");
+        RLock rLock2 = redissonClient.getLock("2");
+        RLock rLock3 = redissonClient.getLock("3");
+        RLock multiLock = redissonClient.getMultiLock(rLock1, rLock2, rLock3);
+        //
+        multiLock.tryLock();
+    }
 
     public <P, R> R handleFunctionWithLockImmediately(
             Function<P, R> function, P param, String lockKey) {

@@ -21,6 +21,11 @@ public class CacheGlue {
         return System.currentTimeMillis();
     }
 
+    @Cacheable(cacheNames = "eh-cache", cacheManager = "ehCacheManager")
+    public Long ehCache() {
+        return System.currentTimeMillis();
+    }
+
     @Cacheable(cacheNames = "redisCache", cacheManager = "redisCacheManager")
     public Long redisCache() {
         return System.currentTimeMillis();
@@ -28,7 +33,7 @@ public class CacheGlue {
 
     // 清除缓存的时候如果有多个cacheManager，需要指定。否则会按照默认（primary）的执行
     @CacheEvict(
-            cacheNames = {"mapCache", "redisCache"},
+            cacheNames = {"mapCache", "redisCache", "ehCache"},
             allEntries = true)
     public void cleanCache() {}
 
@@ -37,4 +42,10 @@ public class CacheGlue {
             cacheManager = "redisCacheManager",
             allEntries = true)
     public void cleanRedisCache() {}
+
+    @CacheEvict(
+            cacheNames = {"ehCache"},
+            cacheManager = "ehCacheManager",
+            allEntries = true)
+    public void cleanEhCache() {}
 }
