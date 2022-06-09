@@ -21,7 +21,7 @@ public class ThreadLocalExample {
         int value1 = aa.get();
         System.out.println(value1);
         //        AtomicInteger i = new AtomicInteger();
-        ExecutorService service = Executors.newFixedThreadPool(1);
+        ExecutorService service = Executors.newFixedThreadPool(5);
         for (; ; ) {
             service.submit(
                     () -> {
@@ -33,7 +33,7 @@ public class ThreadLocalExample {
                         Integer value = aa.get();
                         value = value == null ? 0 : value;
                         aa.set(++value);
-                        System.out.println(value);
+                        System.out.println(Thread.currentThread().getName() + ":" + value);
                     });
         }
     }
