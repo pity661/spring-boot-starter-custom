@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @program: spring-boot-starter-custom
@@ -15,6 +16,8 @@ import org.springframework.context.annotation.Bean;
  * @email: huwenqi@panda-fintech.com
  * @create: 2021-03-26 16:12
  */
+// 直接运行是需要加该配置
+@Configuration
 @ConditionalOnMissingBean(name = "redissonClient")
 public class RedissonAutoConfig {
     //  public RedissonAutoConfig() {

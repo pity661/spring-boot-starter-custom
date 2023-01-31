@@ -4,6 +4,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.LockSupport;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * @program: spring-boot-starter-custom
@@ -29,8 +30,10 @@ public class ParallelExample {
         // 自定义线程数
         //        ExecutorService executorService = Executors.newWorkStealingPool(10);
 
-        runExample(Thread.currentThread());
-        System.out.println("finish");
+        //        runExample(Thread.currentThread());
+        //        System.out.println("finish");
+
+        aa();
     }
 
     public static Integer getAvailableProcessors() {
@@ -52,5 +55,20 @@ public class ParallelExample {
                 });
         LockSupport.park();
         executorService.shutdown();
+    }
+
+    public static void aa() {
+        // AbstractPipeline::evaluate
+        IntStream.range(1, 100).parallel().forEach(i -> println(String.valueOf(i)));
+
+        System.out.println("ORDER");
+
+        IntStream.range(1, 100).parallel().forEachOrdered(i -> println("order - " + i));
+
+        Stream.of("1", "2", "#").parallel().forEachOrdered(System.out::println);
+    }
+
+    private static void println(String info) {
+        System.out.println(Thread.currentThread().getName() + ": " + info);
     }
 }

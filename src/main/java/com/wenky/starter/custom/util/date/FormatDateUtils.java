@@ -30,4 +30,8 @@ public class FormatDateUtils {
     public static String RFC3339Time(Date date) {
         return date == null ? null : DateFormatUtils.format(date, RFC3339_DATE_FORMAT);
     }
+
+    public static void main(String[] args) {
+        System.out.println(RFC3339Time(new Date()));
+    }
 }

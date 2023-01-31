@@ -22,6 +22,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 @AutoConfigureAfter(MailSenderAutoConfiguration.class)
 public class MailConfiguration {
 
+    // 注入配置参考 MailSenderPropertiesConfiguration
     @Bean
     @ConditionalOnMissingBean(name = "mailTemplate")
     public MailTemplate mailTemplate(JavaMailSender javaMailSender) {

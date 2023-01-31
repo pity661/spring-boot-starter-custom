@@ -66,4 +66,8 @@ public class UnderlineToCamelArgumentResolver implements HandlerMethodArgumentRe
         matcher.appendTail(sb);
         return sb.toString();
     }
+
+    public static void main(String[] args) {
+        System.out.println(underLineToCamel("aaa_bbb_ccc"));
+    }
 }

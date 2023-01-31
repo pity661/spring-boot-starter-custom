@@ -3,6 +3,7 @@ package com.wenky.starter.custom.aspect.example.annotation.bean;
 import com.wenky.starter.custom.aspect.example.annotation.Target;
 import com.wenky.starter.custom.aspect.example.annotation.TargetA;
 import com.wenky.starter.custom.aspect.example.annotation.TargetB;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @email: huwenqi@panda-fintech.com
  * @create: 2021-07-07 15:45
  */
+@Order(1)
 @Component
 public class AnnotationBean {
     public void handle() {

@@ -7,6 +7,7 @@ import com.wenky.starter.custom.util.GsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.ResourceAccessException;
@@ -62,6 +63,18 @@ public class RequestExample {
         ResponseEntity response =
                 restTemplate.exchange(
                         "http://127.0.0.1:8080/post", HttpMethod.POST, httpEntity, String.class);
+        info(response.getBody());
+    }
+
+    public void formPostRequest() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        LinkedMultiValueMap<String, String> params = new LinkedMultiValueMap<>();
+        params.set("name", "wenky");
+        HttpEntity<LinkedMultiValueMap> httpEntity = new HttpEntity<>(params, headers);
+        ResponseEntity response =
+                restTemplate.postForEntity(
+                        "http://127.0.0.1:8080/form/post", httpEntity, String.class);
         info(response.getBody());
     }
 

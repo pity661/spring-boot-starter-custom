@@ -23,6 +23,8 @@ public class MailTemplate {
         LoggerUtils.info("JavaMailSender:" + this.javaMailSender);
     }
 
+    // 发送带附件的邮件 https://blog.csdn.net/weixin_46822367/article/details/123893527
+    // 使用模板发送邮件 FreeMarkerConfigurer
     public void sendEmailTemplate() {
         SimpleMailMessage message = initMessage();
         message.setText("This is the test email template for your email:\n%s\n");
@@ -30,10 +32,11 @@ public class MailTemplate {
         LoggerUtils.info("TEST EMAIl SEND SUCCESS！");
     }
 
+    // 发送普通邮件
     private SimpleMailMessage initMessage() {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(mailProperties.getUsername());
-        message.setTo("huwenqi@panda-fintech.com");
+        message.setTo("huwenqi@olading.com");
         //        message.setTo("wenky0413@gmail.com");
         message.setSubject("TEST");
         return message;

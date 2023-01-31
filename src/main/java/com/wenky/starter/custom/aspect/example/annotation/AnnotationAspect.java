@@ -25,7 +25,8 @@ public class AnnotationAspect {
     }
 
     @Pointcut(
-            "@annotation(com.wenky.starter.custom.aspect.example.annotation.TargetA) && @annotation(com.wenky.starter.custom.aspect.example.annotation.TargetB)")
+            "@annotation(com.wenky.starter.custom.aspect.example.annotation.TargetA) "
+                    + "&& @annotation(com.wenky.starter.custom.aspect.example.annotation.TargetB)")
     private void executeDouble() {}
 
     @Before("executeDouble()")

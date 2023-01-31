@@ -42,4 +42,9 @@ class CommonRequestTest {
     public void getMapTest() {
         requestExample.getMapRequest();
     }
+
+    @Test
+    public void formPostTest() {
+        requestExample.formPostRequest();
+    }
 }

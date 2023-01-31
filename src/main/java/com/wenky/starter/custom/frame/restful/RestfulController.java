@@ -49,6 +49,11 @@ public class RestfulController {
         return ResponseEntity.ok(param);
     }
 
+    @PostMapping("/form/post")
+    public ResponseEntity formPost(PostParam param) {
+        return ResponseEntity.ok(param);
+    }
+
     @GetMapping("/get")
     public ResponseEntity get(GetParam param) {
         return ResponseEntity.ok(param);

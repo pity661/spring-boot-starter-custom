@@ -22,6 +22,7 @@ public class ReentrantLockExample {
     // 公平锁 按照获取锁的顺序排队
     // private static final Lock lock = new ReentrantLock(Boolean.TRUE);
 
+    // condition的await会释放锁，但是signal不会释放锁
     private static final Condition conditionA = lock.newCondition();
     private static final Condition conditionB = lock.newCondition();
 
@@ -78,6 +79,7 @@ public class ReentrantLockExample {
                                     System.out.println(
                                             PRODUCTS.stream().collect(Collectors.joining(",")));
                                     conditionB.signal();
+                                    // 会释放当前线程获取到的锁进入到条件队列中
                                     conditionA.await();
                                 }
                             } catch (Exception e) {
@@ -98,15 +100,19 @@ public class ReentrantLockExample {
                                 lock.lock();
                                 while (true) {
                                     if (PRODUCTS.size() < 3) {
+                                        // 会释放当前线程获取到的锁进入到条件队列中
                                         conditionB.await();
                                     } else {
                                         System.out.println(
                                                 Thread.currentThread().getName()
                                                         + " remove "
                                                         + PRODUCTS.remove(PRODUCTS.size() - 1));
+                                        // 只唤醒一个任意等待线程
                                         // 用这个方法list中最大数为3，仅一个producer能拿到锁
+                                        // 不会释放锁
                                         conditionA.signal();
-                                        // 用这个方法list中最大数为5，所有producer否能拿到锁
+                                        // 唤醒所有等待线程
+                                        // 用这个方法list中最大数为5，所有producer都能拿到锁
                                         // conditionA.signalAll();
                                     }
                                 }

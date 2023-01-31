@@ -92,6 +92,7 @@ dependencies {
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     compile 'com.google.code.gson:gson:+'
+    implementation 'com.google.guava:guava:31.1-jre'
     compile 'org.apache.commons:commons-lang3:3.5'
     compile 'commons-beanutils:commons-beanutils:1.9.3'
     compile 'commons-io:commons-io:2.6'
