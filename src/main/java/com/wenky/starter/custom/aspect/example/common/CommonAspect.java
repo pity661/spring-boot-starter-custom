@@ -15,6 +15,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class CommonAspect {
+    // 仅支持cglib代理，继承被代理类覆盖方法实现
+    // 指定类被代理
     @Pointcut("this(com.wenky.starter.custom.aspect.example.common.service.CommonService)")
     private void thisServicePointcut() {}
 
@@ -23,6 +25,8 @@ public class CommonAspect {
         System.out.println("thisServicePointcut");
     }
 
+    // 同时支持 jdk和cglib代理
+    // jdk代理仅支持实现接口，代理类和被代理类不是同一个对象
     @Pointcut("target(com.wenky.starter.custom.aspect.example.common.service.CommonService)")
     private void targetServicePointcut() {}
 
@@ -31,6 +35,7 @@ public class CommonAspect {
         System.out.println("targetServicePointcut");
     }
 
+    // this在类上无效
     @Pointcut("this(com.wenky.starter.custom.aspect.example.common.service.impl.CommonServiceImpl)")
     private void thisServiceImplPointcut() {}
 

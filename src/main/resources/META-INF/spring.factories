@@ -12,6 +12,7 @@ com.wenky.starter.custom.bean.delay.DelayConfiguration,\
 com.wenky.starter.custom.frame.mail.MailConfiguration,\
 com.wenky.starter.custom.aspect.AspectAutoConfiguration,\
 com.wenky.starter.custom.config.ConfigAutoConfiguration,\
-com.wenky.starter.custom.frame.redis.RedissonConfiguration
+com.wenky.starter.custom.frame.redis.RedissonConfiguration,\
+com.wenky.starter.custom.aspect.starter.AspectAutoConfiguration
 
 

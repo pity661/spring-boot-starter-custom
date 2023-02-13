@@ -34,6 +34,7 @@ public class ControllerAspect {
     @Pointcut("bean(*Controller)")
     public void execute() {}
 
+    // aspect::param ProceedingJoinPoint 参数只适用于aop::around环绕注解，能控制方法的执行
     @Around("execute()")
     public Object doAround(ProceedingJoinPoint joinPoint) throws Throwable {
         HttpServletRequest request =
@@ -46,12 +47,11 @@ public class ControllerAspect {
                         request.getRequestURI(), getRequestParams(joinPoint)));
         StopWatch stopWatch = new StopWatch();
         Object result = null;
-        Exception exception = null;
         try {
             stopWatch.start();
             result = joinPoint.proceed();
         } catch (Exception e) {
-            exception = e;
+            throw e;
         } finally {
             stopWatch.stop();
             LoggerUtils.info(
@@ -60,9 +60,6 @@ public class ControllerAspect {
                             request.getRequestURI(),
                             stopWatch.getTotalTimeMillis(),
                             GsonUtils.toString(result)));
-            if (exception != null) {
-                throw exception;
-            }
         }
         return result;
     }

@@ -43,6 +43,19 @@
           "description": "disable controllerAspect be register."
         }
       ]
+    },
+    {
+      "name": "wenky.aspect.custom.controller",
+      "values": [
+        {
+          "value": "enable",
+          "description": "enable register."
+        },
+        {
+          "value": "disable",
+          "description": "disable register."
+        }
+      ]
     }
   ]
 }

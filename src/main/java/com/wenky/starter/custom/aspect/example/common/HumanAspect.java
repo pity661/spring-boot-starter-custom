@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class HumanAspect {
 
-    @Before("execution(* com.wenky.starter.custom.controller..*(..))")
     // 所有controller包及子包下面的所有方法的所有参数
+    @Before("execution(* com.wenky.starter.custom.controller..*(..))")
     public void beforeMethod(JoinPoint jp) {
         String methodName = jp.getSignature().getName();
         System.out.println("【前置增强】" + methodName);
