@@ -27,4 +27,18 @@ class CacheGlueTest {
         TimeUnit.SECONDS.sleep(1);
         LoggerUtils.info(cacheGlue.ehCache());
     }
+
+    @Test
+    public void caffeineCacheTest() throws InterruptedException {
+        // first invoke
+        LoggerUtils.info(cacheGlue.caffeineCache());
+        TimeUnit.SECONDS.sleep(1);
+        // invoke cache result
+        LoggerUtils.info(cacheGlue.caffeineCache());
+        // clean cache
+        System.gc();
+        TimeUnit.SECONDS.sleep(1);
+        // invoke direct
+        LoggerUtils.info(cacheGlue.caffeineCache());
+    }
 }

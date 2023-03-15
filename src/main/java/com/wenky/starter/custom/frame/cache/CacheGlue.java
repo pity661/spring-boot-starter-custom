@@ -31,6 +31,15 @@ public class CacheGlue {
         return System.currentTimeMillis();
     }
 
+    // CacheAspectSupport::findInCaches 552
+    @Cacheable(cacheNames = "caffeineCache", cacheManager = "caffeineCacheManager")
+    public Long caffeineCache() {
+        // 如果缓存被gc清理，返回null，会再次执行业务逻辑
+        //        new CaffeineCacheManager().getCache("caffeineCache")
+        //                .get("key", () -> "value");
+        return System.currentTimeMillis();
+    }
+
     // 清除缓存的时候如果有多个cacheManager，需要指定。否则会按照默认（primary）的执行
     @CacheEvict(
             cacheNames = {"mapCache", "redisCache", "ehCache"},

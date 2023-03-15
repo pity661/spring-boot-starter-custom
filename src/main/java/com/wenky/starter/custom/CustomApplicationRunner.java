@@ -4,7 +4,6 @@ import com.wenky.starter.custom.frame.redis.delay.WorkerService;
 import javax.annotation.PostConstruct;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
 
 /**
  * @program: spring-boot-starter-custom
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @email: huwenqi@olading.com
  * @create: 2022-03-11 11:24
  */
-@Component
+// @Component
 public class CustomApplicationRunner implements ApplicationRunner {
 
     private final WorkerService workerService;

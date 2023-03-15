@@ -2,8 +2,10 @@ package com.wenky.starter.custom.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.wenky.starter.custom.frame.cache.CacheGlue;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import net.sf.ehcache.config.CacheConfiguration;
@@ -14,6 +16,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.cache.interceptor.KeyGenerator;
@@ -121,5 +124,26 @@ public class CacheConfig {
         // NOT cache null value
         //        redisCacheConfiguration.disableCachingNullValues();
         return redisCacheConfiguration;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(name = "caffeineCacheManager")
+    public CacheManager caffeineCacheManager() {
+        Caffeine caffeine =
+                Caffeine.newBuilder()
+                        // 内存溢出前GC会释放缓存内存，释放后SoftReference对象还在，get方法返回null
+                        //                        .softValues()
+                        // 每次gc都会释放缓存内存
+                        .weakValues()
+                        // 设置最后一次写入或访问后经过固定时间过期
+                        .expireAfterWrite(30, TimeUnit.MINUTES)
+                        // 初始的缓存空间大小
+                        .initialCapacity(10)
+                        // 缓存的最大条数
+                        .maximumSize(50);
+
+        CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
+        caffeineCacheManager.setCaffeine(caffeine);
+        return caffeineCacheManager;
     }
 }

@@ -69,6 +69,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-cache'
 
     implementation 'net.sf.ehcache:ehcache'
+    implementation 'com.github.ben-manes.caffeine:caffeine'
 
     // redisson 引入redisson-starter依赖后，不需要再引入starter-data-redis依赖
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
@@ -115,3 +116,7 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+//tasks.named('test') {
+//    useJUnitPlatform()
+//}

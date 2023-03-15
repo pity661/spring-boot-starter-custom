@@ -26,24 +26,34 @@ public class ForkJoinPoolExample {
         ExecutorService executorService = Executors.newWorkStealingPool();
         ForkJoinPool forkJoinPool = (ForkJoinPool) executorService;
         //        executorService.submit();
+        executorService.shutdown();
 
-        partitionTest();
+        //        partitionTest(2);
+        //        partitionTest(3);
 
-        //        forkJoinTest();
+        forkJoinTest();
 
-        //        streamParallelTest();
+        streamParallelTest();
     }
 
-    public static void partitionTest() {
+    /**
+     * 平分列表
+     *
+     * @param max
+     */
+    public static void partitionTest(Integer max) {
         // 0, 1
-        List<Integer> material = IntStream.rangeClosed(0, 1).boxed().collect(Collectors.toList());
+        List<Integer> material = IntStream.rangeClosed(0, max).boxed().collect(Collectors.toList());
         System.out.println(material);
         System.out.println(material.size());
         // material size must large than 1
         List<List<Integer>> partition =
                 Lists.partition(material, Math.max(material.size() / 2, (material.size() + 1) / 2));
-        System.out.println(partition.get(0).size());
-        System.out.println(partition.get(1).size());
+
+        System.out.println(
+                String.format("size: %d, list: %s", partition.get(0).size(), partition.get(0)));
+        System.out.println(
+                String.format("size: %d, list: %s", partition.get(1).size(), partition.get(1)));
     }
 
     public static void forkJoinTest() {
