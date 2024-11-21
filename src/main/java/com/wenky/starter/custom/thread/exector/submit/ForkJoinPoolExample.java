@@ -23,10 +23,10 @@ public class ForkJoinPoolExample {
         //        Executors.newSingleThreadExecutor();
 
         // ForkJoinPool
-        ExecutorService executorService = Executors.newWorkStealingPool();
-        ForkJoinPool forkJoinPool = (ForkJoinPool) executorService;
+//        ExecutorService executorService = Executors.newWorkStealingPool();
+//        ForkJoinPool forkJoinPool = (ForkJoinPool) executorService;
         //        executorService.submit();
-        executorService.shutdown();
+//        executorService.shutdown();
 
         //        partitionTest(2);
         //        partitionTest(3);
@@ -62,27 +62,28 @@ public class ForkJoinPoolExample {
         ForkJoinPool forkJoinPool = ForkJoinPool.commonPool();
         List<Integer> material =
                 IntStream.rangeClosed(0, 1000000).boxed().collect(Collectors.toList());
-        Task task = new Task(material);
+        Task submitAndJoinTask = new Task(material);
 
         // submit + join = invoke
         // [1] submit + join
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
-        ForkJoinTask<Integer> forkJoinTask = forkJoinPool.submit(task);
+        ForkJoinTask<Integer> forkJoinTask = forkJoinPool.submit(submitAndJoinTask);
         Integer submitResult = forkJoinTask.join();
         stopWatch.stop();
         System.out.println(
                 String.format(
-                        "result: %s, consume time: %s",
+                        "[submit + join]result: %s, consume time: %s",
                         submitResult, stopWatch.getLastTaskTimeNanos()));
 
         // [2] invoke
+        Task invokeTask = new Task(material);
         stopWatch.start();
-        Integer invokeResult = forkJoinPool.invoke(task);
+        Integer invokeResult = forkJoinPool.invoke(invokeTask);
         stopWatch.stop();
         System.out.println(
                 String.format(
-                        "result: %s, consume time: %s",
+                        "[invoke]result: %s, consume time: %s",
                         invokeResult, stopWatch.getLastTaskTimeNanos()));
 
         forkJoinPool.shutdown();
@@ -91,13 +92,13 @@ public class ForkJoinPoolExample {
     public static void streamParallelTest() {
         StopWatch stopWatch = new StopWatch();
         List<Integer> material =
-                IntStream.rangeClosed(0, 1000000).boxed().collect(Collectors.toList());
+                IntStream.rangeClosed(0, 100000000).boxed().collect(Collectors.toList());
         stopWatch.start();
         Integer parallelResult = material.stream().parallel().reduce(0, Integer::sum);
         stopWatch.stop();
         System.out.println(
                 String.format(
-                        "result: %s, consume time: %s",
+                        "[stream parallel]result: %s, consume time: %s",
                         parallelResult, stopWatch.getLastTaskTimeNanos()));
 
         stopWatch.start();
@@ -105,7 +106,7 @@ public class ForkJoinPoolExample {
         stopWatch.stop();
         System.out.println(
                 String.format(
-                        "result: %s, consume time: %s", result, stopWatch.getLastTaskTimeNanos()));
+                        "[stream]result: %s, consume time: %s", result, stopWatch.getLastTaskTimeNanos()));
     }
 
     /** 有返回值 */

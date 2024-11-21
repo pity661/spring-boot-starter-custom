@@ -14,9 +14,9 @@ import java.util.concurrent.TimeUnit;
 public class FifoQueueExample {
     public static void main(String[] args) throws InterruptedException {
 
-        //    addExample();
+            addExample();
 
-        getExample();
+//        getExample();
     }
 
     private static void getExample() throws InterruptedException {
