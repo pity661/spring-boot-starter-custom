@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import com.google.common.base.Throwables;
 import org.springframework.util.StopWatch;
 
 /**
@@ -23,10 +26,11 @@ public class CompletableFutureExample {
         //        single();
         //        System.out.println(getNames());
         //                System.out.println(fluent());
-        //        System.out.println(fluentWithExecutorServiceThenCombine());
+//                System.out.println(fluentWithExecutorServiceThenCombine());
         //                System.out.println(fluentWithExecutorServiceThenCompose());
 
-        applyAndCompose();
+//        applyAndCompose();
+        batchTask();
 
         stopWatch.stop();
         System.out.println("time: " + stopWatch.getTotalTimeMillis());
@@ -83,9 +87,27 @@ public class CompletableFutureExample {
                 IntStream.range(0, 4)
                         .boxed()
                         // 异步 1
-                        .map(i -> CompletableFuture.supplyAsync(() -> getName(1), executorService))
+                        .map(i -> CompletableFuture.supplyAsync(() -> {
+                            if (i == 1) {
+                                throw new RuntimeException("error1");
+                            }
+                           return getName(1);
+                        }, executorService)
+                        // 如果supplyAsync发生异常，处理默认返回结果
+                        .exceptionally(ex -> {
+                            System.out.println("发生异常了1");
+                            return "异常1" + Thread.currentThread().getName();
+                        }))
                         // 同步 2
-                        .map(future -> future.thenApply(name -> name + getName(2)))
+                        .map(future -> future.thenApply(name -> {
+                            if (name.contains("异常1")) {
+                                throw new RuntimeException("error2");
+                            }
+                            return name + getName(2);
+                        }).exceptionally(ex -> {
+                            System.out.println("发生异常了2");
+                            return "异常1" + Thread.currentThread().getName();
+                        }))
                         // 不用等上面执行直接异步执行 1
                         .map(
                                 future ->
@@ -94,7 +116,12 @@ public class CompletableFutureExample {
                                         future.thenCombine(
                                                 CompletableFuture.supplyAsync(
                                                         () -> getName(3), executorService),
-                                                (a, b) -> a + b))
+                                                (a, b) -> a + b)
+                        // 任务执行完毕结果和异常信息处理
+                        .whenComplete((result, ex) -> {
+                            System.out.println("这是结果" + result);
+                            System.out.println("这是异常" + Throwables.getStackTraceAsString(ex));
+                        }))
                         .collect(Collectors.toList());
         List<String> result =
                 nameFutures.stream().map(CompletableFuture::join).collect(Collectors.toList());
@@ -127,6 +154,31 @@ public class CompletableFutureExample {
                 nameFutures.stream().map(CompletableFuture::join).collect(Collectors.toList());
         executorService.shutdown();
         return result;
+    }
+
+    public static void batchTask() {
+        List<CompletableFuture<Void>> completableFutureList =
+                Stream.of(1,2,3,4).map(i ->
+                        CompletableFuture.supplyAsync(() -> {
+                            if (i == 1) {
+                                throw new RuntimeException("aa");
+                            }
+                            try {
+                                TimeUnit.SECONDS.sleep(i);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            return String.valueOf(i + 1);
+                        }).exceptionally(ex -> {
+                            System.out.println("发生异常了" + i + ex.getMessage());
+                            return "异常结果";
+                        }).thenAccept(System.out::println).whenComplete((v, ex) -> {
+                            if (ex != null) {
+                                System.out.println("发生异常了");
+                            }
+                        })).collect(Collectors.toList());
+        completableFutureList.forEach(CompletableFuture::join);
+        System.out.println("结束了");
     }
 
     // CompletableFuture.supplyAsync 可以指定线程池处理

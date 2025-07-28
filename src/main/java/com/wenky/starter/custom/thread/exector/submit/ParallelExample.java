@@ -2,6 +2,7 @@ package com.wenky.starter.custom.thread.exector.submit;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.locks.LockSupport;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -28,12 +29,12 @@ public class ParallelExample {
         // 默认线程数
         //        ExecutorService defaultExecutorService = Executors.newWorkStealingPool();
         // 自定义线程数
-        //        ExecutorService executorService = Executors.newWorkStealingPool(10);
+                ExecutorService executorService = Executors.newWorkStealingPool(10);
 
-        //        runExample(Thread.currentThread());
-        //        System.out.println("finish");
+                runExample(Thread.currentThread());
+                System.out.println("finish");
 
-        aa();
+//        aa();
     }
 
     public static Integer getAvailableProcessors() {
@@ -42,7 +43,9 @@ public class ParallelExample {
     }
 
     public static void runExample(Thread mainThread) {
-        ExecutorService executorService = Executors.newWorkStealingPool(10);
+//        ExecutorService executorService = Executors.newWorkStealingPool(10);
+        ExecutorService executorService =
+                new ForkJoinPool(10, ForkJoinPool.defaultForkJoinWorkerThreadFactory, null, true);
         executorService.submit(
                 () -> {
                     IntStream.range(1, 100)
