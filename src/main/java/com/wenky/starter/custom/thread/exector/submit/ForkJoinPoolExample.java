@@ -21,6 +21,11 @@ public class ForkJoinPoolExample {
         //        Executors.newCachedThreadPool();
         //        Executors.newFixedThreadPool(1);
         //        Executors.newSingleThreadExecutor();
+        ForkJoinPool forkJoinPool = (ForkJoinPool) Executors.newWorkStealingPool(100);
+        ForkJoinPool.commonPool();
+        //
+        forkJoinPool.getPoolSize();
+        forkJoinPool.getParallelism();
 
         // ForkJoinPool
 //        ExecutorService executorService = Executors.newWorkStealingPool();

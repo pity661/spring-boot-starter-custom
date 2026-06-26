@@ -19,6 +19,7 @@ import org.springframework.util.StopWatch;
 public class CompletableFutureExample {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
+        System.out.println(System.nanoTime());
         System.out.println(Runtime.getRuntime().availableProcessors());
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -27,14 +28,32 @@ public class CompletableFutureExample {
         //        System.out.println(getNames());
         //                System.out.println(fluent());
 //                System.out.println(fluentWithExecutorServiceThenCombine());
-        //                System.out.println(fluentWithExecutorServiceThenCompose());
+        System.out.println(fluentWithExecutorServiceThenCompose());
 
 //        applyAndCompose();
-        batchTask();
+//        batchTask();
 
         stopWatch.stop();
         System.out.println("time: " + stopWatch.getTotalTimeMillis());
     }
+
+    public static void exceptionally() throws ExecutionException, InterruptedException, TimeoutException {
+        CompletableFuture<Integer> future1 =
+                CompletableFuture.supplyAsync(() -> getName()).thenApply(name -> name.length());
+//        future1.exceptionally();
+
+        System.out.println(System.nanoTime());
+        // 超时抛出 TimeoutException
+        future1.get(1, TimeUnit.SECONDS);
+
+        future1.get();
+        future1.whenComplete((result, error) -> {
+
+        });
+
+    }
+
+
 
     public static void single() throws InterruptedException, ExecutionException {
         Future<String> futureName = getNameAsync();
@@ -47,13 +66,17 @@ public class CompletableFutureExample {
     }
 
     private static void applyAndCompose() throws ExecutionException, InterruptedException {
+        // 同步串行
         CompletableFuture<Integer> future1 =
-                CompletableFuture.supplyAsync(() -> getName()).thenApply(name -> name.length());
+                CompletableFuture.supplyAsync(() -> getName())
+                        .thenApply(name -> name.length());
 
+        // 同步串行
         CompletableFuture<String> future2 =
                 CompletableFuture.supplyAsync(() -> getName())
-                        .thenCompose(name -> CompletableFuture.completedFuture(name + "_2"));
+                        .thenCompose(name -> CompletableFuture.completedFuture(name));
 
+        // 异步并行
         CompletableFuture<String> future3 =
                 CompletableFuture.supplyAsync(() -> getName())
                         .thenCombine(CompletableFuture.completedFuture("_3"), (a, b) -> a + b);
@@ -135,11 +158,11 @@ public class CompletableFutureExample {
         List<CompletableFuture<String>> nameFutures =
                 IntStream.range(0, 4)
                         .boxed()
-                        // 异步 1
+                        // 异步 1s
                         .map(i -> CompletableFuture.supplyAsync(() -> getName(1), executorService))
-                        // 同步 2
+                        // 同步 2s
                         .map(future -> future.thenApply(name -> name + getName(2)))
-                        // 异步 3
+                        // 异步 3s
                         .map(
                                 future ->
                                         // 等前置任务执行完后，根据其结果执行后续任务
